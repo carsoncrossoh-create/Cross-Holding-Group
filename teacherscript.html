@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teacherscript — AI Documents for Teachers</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<script>
+window.CH_SITE = {
+  name: 'Teacherscript',
+  price: '$12',
+  color: '#059669',
+  checkoutUrl: 'https://crossholdinggroup.lemonsqueezy.com/checkout/buy/TEACHERSCRIPT_PRODUCT_ID'
+};
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F0FDF4;--white:#FFFFFF;--dark:#064E3B;--green:#059669;--green2:#047857;--green-pale:#ECFDF5;--amber:#D97706;--gray:#6B7280;--border:#D1FAE5;--sans:'DM Sans',sans-serif;--serif:'Lora',serif}
+body{font-family:var(--sans);background:var(--bg);color:var(--dark);font-size:15px;line-height:1.6;min-height:100vh}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--dark);text-decoration:none}
+.logo span{color:var(--green)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--dark)}
+.nav-cta{background:var(--green);color:#fff;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--green2)}
+.hero{max-width:1100px;margin:0 auto;padding:64px 24px 40px}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--green-pale);border:1px solid #A7F3D0;color:var(--green);font-size:12px;font-weight:500;padding:5px 12px;border-radius:100px;margin-bottom:20px}
+.hero h1{font-family:var(--serif);font-size:clamp(30px,4vw,50px);font-weight:600;line-height:1.12;color:var(--dark);margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--green)}
+.hero p{font-size:16px;font-weight:300;color:var(--gray);line-height:1.75;margin-bottom:28px;max-width:440px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-main{background:var(--green);color:#fff;padding:12px 24px;border-radius:9px;font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;transition:all .2s}
+.btn-main:hover{background:var(--green2);transform:translateY(-1px)}
+.btn-ghost{background:var(--white);color:var(--gray);padding:12px 22px;border-radius:9px;font-size:14px;border:1px solid var(--border);cursor:pointer;text-decoration:none;transition:all .2s;display:inline-flex;align-items:center}
+.btn-ghost:hover{border-color:var(--green);color:var(--dark)}
+.time-save{background:var(--white);border-radius:14px;border:1px solid var(--border);padding:24px;display:flex;flex-direction:column;gap:14px}
+.ts-item{display:flex;align-items:center;gap:14px}
+.ts-icon{font-size:20px;width:36px;height:36px;background:var(--green-pale);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ts-text{font-size:13px;color:var(--dark)}
+.ts-time{font-size:11px;color:var(--green);font-weight:500;margin-top:2px}
+.main{max-width:1100px;margin:0 auto;padding:0 24px 60px}
+.tool-card{background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;margin-bottom:20px}
+.tool-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg);flex-wrap:wrap}
+.tool-tab{padding:12px 20px;font-size:13px;font-weight:500;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;transition:all .2s;white-space:nowrap}
+.tool-tab.active{color:var(--green);border-bottom-color:var(--green);background:var(--white)}
+.tool-panel{display:none;padding:28px}
+.tool-panel.active{display:block}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+label{font-size:12px;font-weight:500;color:var(--dark)}
+input,textarea,select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--sans);color:var(--dark);background:var(--white);transition:border-color .2s;width:100%;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--green);box-shadow:0 0 0 3px rgba(5,150,105,.08)}
+textarea{min-height:90px}
+.generate-btn{width:100%;background:var(--green);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans)}
+.generate-btn:hover{background:var(--green2)}
+.generate-btn:disabled{opacity:.6;cursor:not-allowed}
+.output-area{margin-top:20px;display:none}
+.output-label{font-size:11px;font-weight:600;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.copy-btn{background:var(--green-pale);color:var(--green);border:none;padding:5px 12px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;font-family:var(--sans)}
+.copy-btn:hover{background:#A7F3D0}
+.output-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:18px;font-size:13px;line-height:1.8;color:var(--dark);white-space:pre-wrap;min-height:120px}
+.error-msg{background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:12px 16px;font-size:13px;color:#DC2626;margin-top:12px;display:none}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.feat{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:18px;text-align:center}
+.feat-icon{font-size:24px;margin-bottom:8px}
+.feat-title{font-size:13px;font-weight:500;color:var(--dark);margin-bottom:4px}
+.feat-num{font-family:var(--serif);font-size:22px;font-style:italic;color:var(--green)}
+.pricing{background:var(--white);border-radius:16px;border:1px solid var(--border);padding:32px;text-align:center;margin-bottom:20px}
+.pricing h2{font-family:var(--serif);font-size:28px;font-weight:600;margin-bottom:8px}
+.pricing p{font-size:15px;color:var(--gray);margin-bottom:28px}
+.price-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.price-card{border:1px solid var(--border);border-radius:12px;padding:20px;text-align:left}
+.price-card.featured{border-color:var(--green);background:var(--green-pale)}
+.price-name{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:8px}
+.price-amount{font-size:28px;font-weight:600;color:var(--dark);margin-bottom:4px}
+.price-amount span{font-size:14px;font-weight:400;color:var(--gray)}
+.price-desc{font-size:12px;color:var(--gray);margin-bottom:14px;line-height:1.5}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:6px}
+.price-features li{font-size:12px;color:var(--dark);display:flex;align-items:center;gap:6px}
+.price-features li::before{content:'✓';color:var(--green);font-weight:600}
+footer{background:var(--dark);color:rgba(255,255,255,.4);text-align:center;padding:24px;font-size:12px}
+footer a{color:rgba(255,255,255,.4);text-decoration:none}
+footer a:hover{color:#fff}
+@media(max-width:768px){.hero-inner{grid-template-columns:1fr}.time-save{display:none}.form-grid{grid-template-columns:1fr}.features{grid-template-columns:1fr 1fr}.price-cards{grid-template-columns:1fr}nav{padding:0 16px}.main,.hero{padding-left:16px;padding-right:16px}.tool-tabs{overflow-x:auto}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">Teacher<span>script</span></a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+  <a href="#tool" class="nav-cta">Try free →</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Built for teachers, by people who get it</div>
+      <h1>Stop spending Sundays on <em>paperwork.</em></h1>
+      <p>Lesson plans, report card comments, parent emails, and IEP summaries — written in seconds. Teacherscript gives you hours of your weekend back.</p>
+      <div class="hero-btns">
+        <a href="#tool" class="btn-main">Try it free →</a>
+        <a href="#pricing" class="btn-ghost">See pricing</a>
+      </div>
+    </div>
+    <div class="time-save">
+      <div style="font-family:var(--serif);font-size:16px;font-weight:600;color:var(--dark);margin-bottom:4px">Time saved per week</div>
+      <div class="ts-item">
+        <div class="ts-icon">📝</div>
+        <div><div class="ts-text">Lesson plans (5 per week)</div><div class="ts-time">Saves ~3 hours</div></div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-icon">📊</div>
+        <div><div class="ts-text">Report card comments (30 students)</div><div class="ts-time">Saves ~4 hours</div></div>
+      </div>
+      <div class="ts-item">
+        <div class="ts-icon">✉️</div>
+        <div><div class="ts-text">Parent emails (10 per week)</div><div class="ts-time">Saves ~1.5 hours</div></div>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:12px;font-family:var(--serif);font-size:18px;font-style:italic;color:var(--green)">8–10 hours back every week</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="features" id="how">
+    <div class="feat"><div class="feat-icon">📚</div><div class="feat-title">Lesson plans</div><div class="feat-num">5 min</div></div>
+    <div class="feat"><div class="feat-icon">📊</div><div class="feat-title">Report cards</div><div class="feat-num">30 sec</div></div>
+    <div class="feat"><div class="feat-icon">✉️</div><div class="feat-title">Parent emails</div><div class="feat-num">20 sec</div></div>
+    <div class="feat"><div class="feat-icon">📋</div><div class="feat-title">IEP summaries</div><div class="feat-num">2 min</div></div>
+  </div>
+
+  <div class="tool-card" id="tool">
+    <div class="tool-tabs">
+      <button class="tool-tab active" onclick="switchTab('lesson',this)">Lesson Plan</button>
+      <button class="tool-tab" onclick="switchTab('report',this)">Report Card</button>
+      <button class="tool-tab" onclick="switchTab('parent',this)">Parent Email</button>
+      <button class="tool-tab" onclick="switchTab('iep',this)">IEP Summary</button>
+      <button class="tool-tab" onclick="switchTab('sub',this)">Sub Plans</button>
+      <button class="tool-tab" onclick="switchTab('bulletin',this)">Bulletin/Newsletter</button>
+    </div>
+
+    <!-- LESSON PLAN -->
+    <div class="tool-panel active" id="panel-lesson">
+      <div class="form-grid">
+        <div class="form-group"><label>Subject</label><input id="ls-subject" placeholder="5th Grade Math"></div>
+        <div class="form-group"><label>Grade level</label><select id="ls-grade"><option>Kindergarten</option><option>1st Grade</option><option>2nd Grade</option><option>3rd Grade</option><option>4th Grade</option><option selected>5th Grade</option><option>6th Grade</option><option>7th Grade</option><option>8th Grade</option><option>9th Grade</option><option>10th Grade</option><option>11th Grade</option><option>12th Grade</option></select></div>
+        <div class="form-group full"><label>Topic / Standard being taught</label><input id="ls-topic" placeholder="Multiplying fractions — CCSS 5.NF.B.4"></div>
+        <div class="form-group"><label>Class duration</label><select id="ls-duration"><option>30 minutes</option><option selected>45 minutes</option><option>60 minutes</option><option>90 minutes</option></select></div>
+        <div class="form-group"><label>Learning style focus</label><select id="ls-style"><option>Mixed / balanced</option><option>Visual learners</option><option>Hands-on / kinesthetic</option><option>Discussion-based</option></select></div>
+        <div class="form-group full"><label>Any special notes (ELL students, differentiation needs, materials available)</label><textarea id="ls-notes" placeholder="3 ELL students, no devices available, have fraction manipulatives..."></textarea></div>
+      </div>
+      <button class="generate-btn" onclick="generate('lesson')">✦ Generate lesson plan</button>
+      <div class="error-msg" id="err-lesson"></div>
+      <div class="output-area" id="out-lesson">
+        <div class="output-label">Your lesson plan <button class="copy-btn" onclick="copyOutput('lesson')">Copy</button></div>
+        <div class="output-box" id="result-lesson"></div>
+      </div>
+    </div>
+
+    <!-- REPORT CARD -->
+    <div class="tool-panel" id="panel-report">
+      <div class="form-grid">
+        <div class="form-group"><label>Student name</label><input id="rc-name" placeholder="Emma"></div>
+        <div class="form-group"><label>Grade / Subject</label><input id="rc-grade" placeholder="3rd Grade / All subjects"></div>
+        <div class="form-group"><label>Overall performance</label><select id="rc-perf"><option>Exceeding expectations</option><option selected>Meeting expectations</option><option>Approaching expectations</option><option>Needs improvement</option></select></div>
+        <div class="form-group"><label>Strongest area</label><input id="rc-strong" placeholder="Reading comprehension, creative writing"></div>
+        <div class="form-group full"><label>Areas for growth</label><input id="rc-growth" placeholder="Math fluency, staying focused during independent work"></div>
+        <div class="form-group full"><label>Specific observations about this student</label><textarea id="rc-notes" placeholder="Emma is kind to classmates and always tries her best. She struggles with timed math tests but shows strong understanding when given more time..."></textarea></div>
+        <div class="form-group"><label>Tone</label><select id="rc-tone"><option selected>Warm & encouraging</option><option>Direct & informative</option><option>Formal</option></select></div>
+        <div class="form-group"><label>Length</label><select id="rc-len"><option>2–3 sentences</option><option selected>4–5 sentences</option><option>Full paragraph</option></select></div>
+      </div>
+      <button class="generate-btn" onclick="generate('report')">✦ Generate report card comment</button>
+      <div class="error-msg" id="err-report"></div>
+      <div class="output-area" id="out-report">
+        <div class="output-label">Report card comment <button class="copy-btn" onclick="copyOutput('report')">Copy</button></div>
+        <div class="output-box" id="result-report"></div>
+      </div>
+    </div>
+
+    <!-- PARENT EMAIL -->
+    <div class="tool-panel" id="panel-parent">
+      <div class="form-grid">
+        <div class="form-group"><label>Student name</label><input id="pe-student" placeholder="Marcus"></div>
+        <div class="form-group"><label>Parent/Guardian name</label><input id="pe-parent" placeholder="Mrs. Williams"></div>
+        <div class="form-group"><label>Your name</label><input id="pe-teacher" placeholder="Ms. Johnson"></div>
+        <div class="form-group"><label>Email type</label><select id="pe-type"><option>Concern / check-in</option><option>Positive update</option><option>Behavior issue</option><option>Missing work</option><option>Meeting request</option><option>End of year</option></select></div>
+        <div class="form-group full"><label>What do you want to communicate?</label><textarea id="pe-msg" placeholder="Marcus has been struggling to complete homework assignments this week. He is doing well in class but I'm concerned about the missing work affecting his grade..."></textarea></div>
+        <div class="form-group"><label>Tone</label><select id="pe-tone"><option selected>Warm & collaborative</option><option>Direct & professional</option><option>Urgent</option></select></div>
+      </div>
+      <button class="generate-btn" onclick="generate('parent')">✦ Generate parent email</button>
+      <div class="error-msg" id="err-parent"></div>
+      <div class="output-area" id="out-parent">
+        <div class="output-label">Parent email <button class="copy-btn" onclick="copyOutput('parent')">Copy</button></div>
+        <div class="output-box" id="result-parent"></div>
+      </div>
+    </div>
+
+    <!-- IEP -->
+    <div class="tool-panel" id="panel-iep">
+      <div class="form-grid">
+        <div class="form-group"><label>Student name</label><input id="iep-name" placeholder="Tyler"></div>
+        <div class="form-group"><label>Grade</label><input id="iep-grade" placeholder="4th Grade"></div>
+        <div class="form-group full"><label>Disability / area of need</label><input id="iep-need" placeholder="Reading disability / Dyslexia"></div>
+        <div class="form-group full"><label>Current performance & observations</label><textarea id="iep-perf" placeholder="Tyler reads at a 2nd grade level. Struggles with decoding unfamiliar words but shows strong comprehension when material is read aloud..."></textarea></div>
+        <div class="form-group full"><label>Goals for this period</label><textarea id="iep-goals" placeholder="Improve reading fluency to grade level, develop phonics strategies, build confidence in independent reading..."></textarea></div>
+        <div class="form-group full"><label>Accommodations in place</label><textarea id="iep-accom" placeholder="Extended time on tests, text-to-speech software, preferential seating, reduced written output requirements..."></textarea></div>
+      </div>
+      <button class="generate-btn" onclick="generate('iep')">✦ Generate IEP summary</button>
+      <div class="error-msg" id="err-iep"></div>
+      <div class="output-area" id="out-iep">
+        <div class="output-label">IEP summary <button class="copy-btn" onclick="copyOutput('iep')">Copy</button></div>
+        <div class="output-box" id="result-iep"></div>
+      </div>
+    </div>
+
+    <!-- SUB PLANS -->
+    <div class="tool-panel" id="panel-sub">
+      <div class="form-grid">
+        <div class="form-group"><label>Grade & subject</label><input id="sub-grade" placeholder="2nd Grade / General"></div>
+        <div class="form-group"><label>How many days</label><select id="sub-days"><option selected>1 day</option><option>2 days</option><option>3 days</option><option>A week</option></select></div>
+        <div class="form-group full"><label>Current unit / what students are working on</label><textarea id="sub-unit" placeholder="We're in the middle of our community helpers unit. Students have been reading about firefighters and police officers..."></textarea></div>
+        <div class="form-group full"><label>Class schedule & any important notes</label><textarea id="sub-notes" placeholder="8:30 morning meeting, 9:00 reading groups (groups on board), 10:15 snack/recess, 10:35 math — Jordan has a peanut allergy..."></textarea></div>
+      </div>
+      <button class="generate-btn" onclick="generate('sub')">✦ Generate sub plans</button>
+      <div class="error-msg" id="err-sub"></div>
+      <div class="output-area" id="out-sub">
+        <div class="output-label">Sub plans <button class="copy-btn" onclick="copyOutput('sub')">Copy</button></div>
+        <div class="output-box" id="result-sub"></div>
+      </div>
+    </div>
+
+    <!-- BULLETIN -->
+    <div class="tool-panel" id="panel-bulletin">
+      <div class="form-grid">
+        <div class="form-group"><label>School / class name</label><input id="bl-school" placeholder="Ms. Johnson's 5th Grade"></div>
+        <div class="form-group"><label>Type</label><select id="bl-type"><option selected>Weekly newsletter</option><option>Monthly bulletin</option><option>Back to school letter</option><option>End of year letter</option><option>Field trip permission slip</option></select></div>
+        <div class="form-group full"><label>Key announcements / what happened this week</label><textarea id="bl-news" placeholder="We finished our science fair projects, started reading Charlotte's Web, upcoming spelling test on Friday, field trip forms due Monday..."></textarea></div>
+        <div class="form-group full"><label>Reminders & upcoming dates</label><textarea id="bl-dates" placeholder="Nov 15 - Spelling test, Nov 18 - Report cards go home, Nov 22-26 - Thanksgiving break..."></textarea></div>
+      </div>
+      <button class="generate-btn" onclick="generate('bulletin')">✦ Generate newsletter</button>
+      <div class="error-msg" id="err-bulletin"></div>
+      <div class="output-area" id="out-bulletin">
+        <div class="output-label">Newsletter <button class="copy-btn" onclick="copyOutput('bulletin')">Copy</button></div>
+        <div class="output-box" id="result-bulletin"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing" id="pricing">
+    <h2>Simple pricing for teachers</h2>
+    <p>Less than the cost of a Friday coffee run.</p>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="price-name">Free</div>
+        <div class="price-amount">$0 <span>/mo</span></div>
+        <div class="price-desc">Try it once</div>
+        <ul class="price-features"><li>1 free generation</li><li>All document types</li></ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">Teacher</div>
+        <div class="price-amount">$12 <span>/mo</span></div>
+        <div class="price-desc">Most popular</div>
+        <ul class="price-features">
+          <li>Unlimited generations</li>
+          <li>All 6 document types</li>
+          <li>Lesson plans, report cards</li>
+          <li>Parent emails & IEPs</li>
+          <li>Cancel anytime</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Department</div>
+        <div class="price-amount">$35 <span>/mo</span></div>
+        <div class="price-desc">For teams of teachers</div>
+        <ul class="price-features">
+          <li>Everything in Teacher</li>
+          <li>Up to 5 teacher accounts</li>
+          <li>Shared templates</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Teacherscript · A <a href="index.html">Cross Holding Group</a> product · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+</footer>
+
+<script>
+(function() {
+  const BASE_URL = window.location.origin;
+  const LS_TOKEN_KEY = 'ch_session_token';
+  const LS_FREE_USED = 'ch_free_used';
+  window.CHGenerate = async function({ prompt, maxTokens = 1200, onLoading, onError }) {
+    const token = localStorage.getItem(LS_TOKEN_KEY) || '';
+    if (onLoading) onLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Session-Token': token },
+        body: JSON.stringify({ prompt, maxTokens }),
+      });
+      const data = await res.json();
+      if (res.status === 402) { if (onLoading) onLoading(false); showPaywall(data.upgrade_url); return null; }
+      if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+      localStorage.setItem(LS_FREE_USED, '1');
+      if (onLoading) onLoading(false);
+      return data.result;
+    } catch (err) {
+      if (onLoading) onLoading(false);
+      if (onError) onError(err.message);
+      return null;
+    }
+  };
+  window.CHActivateToken = function() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token') || params.get('license_key');
+    if (token) { localStorage.setItem(LS_TOKEN_KEY, token); localStorage.removeItem(LS_FREE_USED); window.history.replaceState({}, '', window.location.pathname); return true; }
+    return false;
+  };
+  function showPaywall(upgradeUrl) {
+    const existing = document.getElementById('ch-paywall');
+    if (existing) existing.remove();
+    const modal = document.createElement('div');
+    modal.id = 'ch-paywall';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;';
+    const site = window.CH_SITE || {};
+    const price = site.price || '$12';
+    const color = site.color || '#059669';
+    const checkoutUrl = site.checkoutUrl || upgradeUrl || '#';
+    modal.innerHTML = `<div style="background:#fff;border-radius:16px;padding:40px;max-width:420px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.3);"><div style="font-size:40px;margin-bottom:16px;">📚</div><h2 style="font-size:22px;font-weight:700;color:#0D0D0F;margin-bottom:8px;font-family:system-ui">You used your free generation</h2><p style="font-size:15px;color:#6B7280;line-height:1.6;margin-bottom:28px;font-family:system-ui">Unlock unlimited lesson plans, report cards, and parent emails for just ${price}/month. Your weekends back.</p><a href="${checkoutUrl}" style="display:block;background:${color};color:#fff;padding:14px 24px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;margin-bottom:12px;font-family:system-ui;">Unlock unlimited — ${price}/mo →</a><button onclick="document.getElementById('ch-paywall').remove()" style="background:none;border:none;font-size:13px;color:#94A3B8;cursor:pointer;font-family:system-ui;padding:8px;">No thanks</button></div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', window.CHActivateToken); } else { window.CHActivateToken(); }
+})();
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+function g(id) { return (document.getElementById(id)||{}).value || ''; }
+
+function getPrompt(type) {
+  if (type === 'lesson') return `Create a detailed, ready-to-use lesson plan for the following:\n\nSubject: ${g('ls-subject')}\nGrade: ${g('ls-grade')}\nTopic/Standard: ${g('ls-topic')}\nDuration: ${g('ls-duration')}\nLearning style: ${g('ls-style')}\nNotes: ${g('ls-notes')||'None'}\n\nInclude: Objective, Materials, Hook/Introduction, Main Activity, Guided Practice, Independent Practice, Closure/Exit Ticket, Assessment. Format clearly with section headers.`;
+  if (type === 'report') return `Write a report card comment for the following student. It should be specific, genuine, and professional.\n\nStudent: ${g('rc-name')}\nGrade/Subject: ${g('rc-grade')}\nPerformance level: ${g('rc-perf')}\nStrongest area: ${g('rc-strong')}\nGrowth areas: ${g('rc-growth')}\nObservations: ${g('rc-notes')}\nTone: ${g('rc-tone')}\nLength: ${g('rc-len')}\n\nWrite the comment only — no extra explanation.`;
+  if (type === 'parent') return `Write a ${g('pe-type').toLowerCase()} email from a teacher to a parent. Professional, warm, and clear.\n\nStudent: ${g('pe-student')}\nParent: ${g('pe-parent')}\nTeacher: ${g('pe-teacher')}\nMessage: ${g('pe-msg')}\nTone: ${g('pe-tone')}\n\nInclude subject line. Write the complete email ready to send.`;
+  if (type === 'iep') return `Write a clear, professional IEP present level of performance summary for this student.\n\nStudent: ${g('iep-name')}\nGrade: ${g('iep-grade')}\nArea of need: ${g('iep-need')}\nCurrent performance: ${g('iep-perf')}\nGoals: ${g('iep-goals')}\nAccommodations: ${g('iep-accom')}\n\nWrite a well-organized summary suitable for an IEP document. Use professional, person-first language.`;
+  if (type === 'sub') return `Write complete substitute teacher plans for ${g('sub-days')} for the following class.\n\nGrade/Subject: ${g('sub-grade')}\nCurrent unit: ${g('sub-unit')}\nSchedule/Notes: ${g('sub-notes')}\n\nWrite clear, easy-to-follow plans a substitute can execute without knowing the students. Include time blocks, activities, materials needed, and classroom management notes.`;
+  if (type === 'bulletin') return `Write a ${g('bl-type').toLowerCase()} for a classroom.\n\nClass: ${g('bl-school')}\nAnnouncements: ${g('bl-news')}\nUpcoming dates: ${g('bl-dates')}\n\nMake it warm, easy to read, and organized. Parents should be able to skim it in 60 seconds.`;
+}
+
+async function generate(type) {
+  const btn = document.querySelector(`#panel-${type} .generate-btn`);
+  const errEl = document.getElementById(`err-${type}`);
+  const outEl = document.getElementById(`out-${type}`);
+  const resultEl = document.getElementById(`result-${type}`);
+  errEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+  const result = await window.CHGenerate({ prompt: getPrompt(type), maxTokens: 1800, onError: (msg) => { errEl.textContent = msg; errEl.style.display = 'block'; } });
+  btn.disabled = false;
+  btn.innerHTML = '✦ Generate';
+  if (result) { resultEl.textContent = result; outEl.style.display = 'block'; outEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+}
+
+function copyOutput(type) {
+  navigator.clipboard.writeText(document.getElementById(`result-${type}`).textContent).then(() => {
+    const btn = document.querySelector(`#out-${type} .copy-btn`);
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>

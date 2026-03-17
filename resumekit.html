@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resumekit — AI Resume & Cover Letter Writer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&display=swap" rel="stylesheet">
+<script>
+window.CH_SITE = {
+  name: 'Resumekit',
+  price: '$19',
+  color: '#2563EB',
+  checkoutUrl: 'https://crossholdinggroup.lemonsqueezy.com/checkout/buy/RESUMEKIT_PRODUCT_ID'
+};
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#F0F4FF;--white:#FFFFFF;--dark:#0F172A;--blue:#2563EB;--blue2:#1D4ED8;--blue-pale:#EFF6FF;--gray:#64748B;--border:#E2E8F0;--sans:'Inter',sans-serif;--serif:'Fraunces',serif}
+body{font-family:var(--sans);background:var(--bg);color:var(--dark);font-size:15px;line-height:1.6;min-height:100vh}
+nav{background:var(--white);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--dark);text-decoration:none}
+.logo span{color:var(--blue)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:13px;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--dark)}
+.nav-cta{background:var(--blue);color:#fff;padding:8px 20px;border-radius:8px;font-size:13px;font-weight:500;text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--blue2)}
+.hero{max-width:1100px;margin:0 auto;padding:64px 24px 40px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--blue-pale);border:1px solid #BFDBFE;color:var(--blue);font-size:12px;font-weight:500;padding:5px 12px;border-radius:100px;margin-bottom:20px}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--blue);flex-shrink:0}
+.hero h1{font-family:var(--serif);font-size:clamp(32px,4vw,52px);font-weight:600;line-height:1.1;color:var(--dark);margin-bottom:16px}
+.hero h1 em{font-style:italic;color:var(--blue)}
+.hero p{font-size:16px;font-weight:300;color:var(--gray);line-height:1.75;margin-bottom:28px;max-width:440px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-main{background:var(--blue);color:#fff;padding:12px 24px;border-radius:9px;font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;transition:all .2s}
+.btn-main:hover{background:var(--blue2);transform:translateY(-1px)}
+.btn-ghost{background:var(--white);color:var(--gray);padding:12px 22px;border-radius:9px;font-size:14px;font-weight:400;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.btn-ghost:hover{border-color:var(--blue);color:var(--dark)}
+.hero-visual{background:var(--white);border-radius:16px;border:1px solid var(--border);padding:28px;box-shadow:0 8px 32px rgba(0,0,0,0.06)}
+.resume-preview{display:flex;flex-direction:column;gap:10px}
+.rp-name{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--dark)}
+.rp-title{font-size:12px;color:var(--blue);font-weight:500;letter-spacing:.04em;text-transform:uppercase}
+.rp-line{height:1px;background:var(--border);margin:6px 0}
+.rp-section{font-size:10px;font-weight:600;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;margin-bottom:5px}
+.rp-text{font-size:12px;color:var(--dark);line-height:1.6}
+.rp-bullet{font-size:12px;color:var(--gray);line-height:1.7;padding-left:12px;position:relative}
+.rp-bullet::before{content:'•';position:absolute;left:0;color:var(--blue)}
+.ai-badge{display:inline-flex;align-items:center;gap:6px;background:var(--blue-pale);border:1px solid #BFDBFE;color:var(--blue);font-size:10px;font-weight:500;padding:3px 8px;border-radius:4px;margin-top:8px}
+.main{max-width:1100px;margin:0 auto;padding:0 24px 60px}
+.tool-card{background:var(--white);border-radius:16px;border:1px solid var(--border);overflow:hidden;margin-bottom:20px}
+.tool-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg)}
+.tool-tab{padding:14px 24px;font-size:13px;font-weight:500;color:var(--gray);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;background:none;border-top:none;border-left:none;border-right:none}
+.tool-tab.active{color:var(--blue);border-bottom-color:var(--blue);background:var(--white)}
+.tool-tab:hover:not(.active){color:var(--dark)}
+.tool-panel{display:none;padding:28px}
+.tool-panel.active{display:block}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+label{font-size:12px;font-weight:500;color:var(--dark);letter-spacing:.02em}
+input,textarea,select{padding:10px 14px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:var(--sans);color:var(--dark);background:var(--white);transition:border-color .2s;width:100%;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.08)}
+textarea{min-height:90px}
+.generate-btn{width:100%;background:var(--blue);color:#fff;border:none;padding:14px;border-radius:10px;font-size:15px;font-weight:500;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans)}
+.generate-btn:hover{background:var(--blue2);transform:translateY(-1px)}
+.generate-btn:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.output-area{margin-top:20px;display:none}
+.output-label{font-size:11px;font-weight:600;color:var(--gray);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.copy-btn{background:var(--blue-pale);color:var(--blue);border:none;padding:5px 12px;border-radius:6px;font-size:11px;font-weight:500;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.copy-btn:hover{background:#DBEAFE}
+.output-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:18px;font-size:13px;line-height:1.8;color:var(--dark);white-space:pre-wrap;min-height:120px}
+.error-msg{background:#FEF2F2;border:1px solid #FECACA;border-radius:8px;padding:12px 16px;font-size:13px;color:#DC2626;margin-top:12px;display:none}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:20px}
+.feat{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:20px}
+.feat-icon{font-size:22px;margin-bottom:10px}
+.feat-title{font-size:14px;font-weight:500;color:var(--dark);margin-bottom:5px}
+.feat-desc{font-size:13px;color:var(--gray);line-height:1.6}
+.pricing{background:var(--white);border-radius:16px;border:1px solid var(--border);padding:32px;text-align:center;margin-bottom:20px}
+.pricing h2{font-family:var(--serif);font-size:28px;font-weight:600;margin-bottom:8px}
+.pricing p{font-size:15px;color:var(--gray);margin-bottom:28px}
+.price-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.price-card{border:1px solid var(--border);border-radius:12px;padding:20px;text-align:left}
+.price-card.featured{border-color:var(--blue);background:var(--blue-pale)}
+.price-name{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--gray);margin-bottom:8px}
+.price-amount{font-size:28px;font-weight:600;color:var(--dark);margin-bottom:4px}
+.price-amount span{font-size:14px;font-weight:400;color:var(--gray)}
+.price-desc{font-size:12px;color:var(--gray);margin-bottom:14px;line-height:1.5}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:6px}
+.price-features li{font-size:12px;color:var(--dark);display:flex;align-items:center;gap:6px}
+.price-features li::before{content:'✓';color:var(--blue);font-weight:600;flex-shrink:0}
+footer{background:var(--dark);color:rgba(255,255,255,.4);text-align:center;padding:24px;font-size:12px}
+footer a{color:rgba(255,255,255,.4);text-decoration:none}
+footer a:hover{color:#fff}
+@media(max-width:768px){.hero{grid-template-columns:1fr}.hero-visual{display:none}.form-grid{grid-template-columns:1fr}.features,.price-cards{grid-template-columns:1fr}.tool-tabs{overflow-x:auto}nav{padding:0 16px}.main,.hero{padding-left:16px;padding-right:16px}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">Resume<span>kit</span></a>
+  <div class="nav-links">
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+  <a href="#tool" class="nav-cta">Write my resume →</a>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-badge">AI-powered career documents</div>
+    <h1>Your dream job starts with a <em>résumé that gets read.</em></h1>
+    <p>Stop staring at a blank page. Resumekit writes ATS-optimized resumes, tailored cover letters, and LinkedIn rewrites in seconds — not hours.</p>
+    <div class="hero-btns">
+      <a href="#tool" class="btn-main">Write my resume free →</a>
+      <a href="#how" class="btn-ghost">See how it works</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="resume-preview">
+      <div class="rp-name">Alex Johnson</div>
+      <div class="rp-title">Senior Product Manager · San Francisco, CA</div>
+      <div class="rp-line"></div>
+      <div class="rp-section">Experience</div>
+      <div class="rp-text" style="font-weight:500;font-size:13px">Product Manager — Stripe <span style="color:#94A3B8;font-weight:400">2022–Present</span></div>
+      <div class="rp-bullet">Led cross-functional team of 12 to ship payments dashboard, increasing activation by 34%</div>
+      <div class="rp-bullet">Reduced time-to-first-payment from 4 days to 18 hours through onboarding redesign</div>
+      <div class="rp-bullet">Defined and owned OKRs for $2.1M ARR product line</div>
+      <div class="ai-badge">✦ Generated by Resumekit in 22 seconds</div>
+    </div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="features" id="how">
+    <div class="feat">
+      <div class="feat-icon">📄</div>
+      <div class="feat-title">ATS-optimized resumes</div>
+      <p class="feat-desc">Keyword-rich, cleanly formatted resumes that pass automated screening and land in front of real humans.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">✉️</div>
+      <div class="feat-title">Tailored cover letters</div>
+      <p class="feat-desc">Cover letters written for the specific job and company — not the same generic template everyone else sends.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">💼</div>
+      <div class="feat-title">LinkedIn rewrites</div>
+      <p class="feat-desc">Headlines, summaries, and experience sections that get you found by recruiters searching your field.</p>
+    </div>
+  </div>
+
+  <div class="tool-card" id="tool">
+    <div class="tool-tabs">
+      <button class="tool-tab active" onclick="switchTab('resume',this)">Resume</button>
+      <button class="tool-tab" onclick="switchTab('cover',this)">Cover Letter</button>
+      <button class="tool-tab" onclick="switchTab('linkedin',this)">LinkedIn</button>
+      <button class="tool-tab" onclick="switchTab('followup',this)">Follow-up Email</button>
+    </div>
+
+    <!-- RESUME -->
+    <div class="tool-panel active" id="panel-resume">
+      <div class="form-grid">
+        <div class="form-group"><label>Full name</label><input id="r-name" placeholder="Alex Johnson"></div>
+        <div class="form-group"><label>Target job title</label><input id="r-title" placeholder="Senior Product Manager"></div>
+        <div class="form-group"><label>Years of experience</label><select id="r-exp"><option>0–1 years (Entry level)</option><option>2–4 years</option><option selected>5–8 years (Mid-level)</option><option>9–14 years (Senior)</option><option>15+ years (Executive)</option></select></div>
+        <div class="form-group"><label>Industry</label><input id="r-industry" placeholder="Tech / SaaS"></div>
+        <div class="form-group full"><label>Current or most recent role & company</label><input id="r-role" placeholder="Product Manager at Stripe"></div>
+        <div class="form-group full"><label>Your key skills & achievements (the more detail the better)</label><textarea id="r-skills" placeholder="Led a team of 12, shipped payments dashboard, increased activation by 34%, reduced onboarding time from 4 days to 18 hours, owned $2.1M ARR product line..."></textarea></div>
+        <div class="form-group full"><label>Job description you're applying for (paste here for best results)</label><textarea id="r-jd" placeholder="Paste the job description here — Resumekit will tailor your resume to match the exact keywords and requirements..."></textarea></div>
+      </div>
+      <button class="generate-btn" onclick="generate('resume')">✦ Generate my resume</button>
+      <div class="error-msg" id="err-resume"></div>
+      <div class="output-area" id="out-resume">
+        <div class="output-label">Your resume <button class="copy-btn" onclick="copyOutput('resume')">Copy</button></div>
+        <div class="output-box" id="result-resume"></div>
+      </div>
+    </div>
+
+    <!-- COVER LETTER -->
+    <div class="tool-panel" id="panel-cover">
+      <div class="form-grid">
+        <div class="form-group"><label>Your name</label><input id="c-name" placeholder="Alex Johnson"></div>
+        <div class="form-group"><label>Company you're applying to</label><input id="c-company" placeholder="Stripe"></div>
+        <div class="form-group full"><label>Job title</label><input id="c-title" placeholder="Senior Product Manager"></div>
+        <div class="form-group full"><label>Why this company? What excites you about this role?</label><textarea id="c-why" placeholder="I've been a Stripe user for 3 years and love how they approach developer experience..."></textarea></div>
+        <div class="form-group full"><label>Your 2-3 biggest relevant achievements</label><textarea id="c-achiev" placeholder="Increased activation by 34%, shipped product used by 50k+ businesses, led team through 2 successful product launches..."></textarea></div>
+        <div class="form-group"><label>Tone</label><select id="c-tone"><option>Professional & confident</option><option>Warm & personable</option><option>Direct & concise</option></select></div>
+      </div>
+      <button class="generate-btn" onclick="generate('cover')">✦ Generate cover letter</button>
+      <div class="error-msg" id="err-cover"></div>
+      <div class="output-area" id="out-cover">
+        <div class="output-label">Your cover letter <button class="copy-btn" onclick="copyOutput('cover')">Copy</button></div>
+        <div class="output-box" id="result-cover"></div>
+      </div>
+    </div>
+
+    <!-- LINKEDIN -->
+    <div class="tool-panel" id="panel-linkedin">
+      <div class="form-grid">
+        <div class="form-group"><label>Your name</label><input id="l-name" placeholder="Alex Johnson"></div>
+        <div class="form-group"><label>Job title / what you do</label><input id="l-title" placeholder="Product Manager building fintech tools"></div>
+        <div class="form-group full"><label>Career background & specialties</label><textarea id="l-bg" placeholder="5 years in product at B2B SaaS companies, specializing in payments and onboarding. I love turning messy problems into clean products..."></textarea></div>
+        <div class="form-group"><label>What you want (open to work, networking, etc)</label><select id="l-goal"><option>Open to new opportunities</option><option>Networking & building connections</option><option>Establishing thought leadership</option><option>Not actively looking</option></select></div>
+        <div class="form-group"><label>Tone</label><select id="l-tone"><option>Professional & approachable</option><option>Bold & ambitious</option><option>Humble & storytelling</option></select></div>
+      </div>
+      <button class="generate-btn" onclick="generate('linkedin')">✦ Generate LinkedIn profile</button>
+      <div class="error-msg" id="err-linkedin"></div>
+      <div class="output-area" id="out-linkedin">
+        <div class="output-label">Your LinkedIn <button class="copy-btn" onclick="copyOutput('linkedin')">Copy</button></div>
+        <div class="output-box" id="result-linkedin"></div>
+      </div>
+    </div>
+
+    <!-- FOLLOW UP -->
+    <div class="tool-panel" id="panel-followup">
+      <div class="form-grid">
+        <div class="form-group"><label>Your name</label><input id="f-name" placeholder="Alex Johnson"></div>
+        <div class="form-group"><label>Hiring manager's name</label><input id="f-hm" placeholder="Sarah Chen"></div>
+        <div class="form-group full"><label>Role you interviewed for</label><input id="f-role" placeholder="Senior Product Manager at Stripe"></div>
+        <div class="form-group full"><label>Something specific from the interview to reference</label><textarea id="f-ref" placeholder="We talked about the challenges with their onboarding flow and I mentioned my experience cutting activation time by 34%..."></textarea></div>
+        <div class="form-group"><label>Type</label><select id="f-type"><option>Thank you email (same day)</option><option>Follow-up (1 week later)</option><option>Check-in (2+ weeks)</option></select></div>
+      </div>
+      <button class="generate-btn" onclick="generate('followup')">✦ Generate follow-up email</button>
+      <div class="error-msg" id="err-followup"></div>
+      <div class="output-area" id="out-followup">
+        <div class="output-label">Your email <button class="copy-btn" onclick="copyOutput('followup')">Copy</button></div>
+        <div class="output-box" id="result-followup"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing" id="pricing">
+    <h2>Simple pricing</h2>
+    <p>Start free. Upgrade when you're ready.</p>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="price-name">Free</div>
+        <div class="price-amount">$0 <span>/mo</span></div>
+        <div class="price-desc">Try before you buy</div>
+        <ul class="price-features">
+          <li>1 free generation</li>
+          <li>All 4 document types</li>
+          <li>Copy & download</li>
+        </ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">Pro</div>
+        <div class="price-amount">$19 <span>/mo</span></div>
+        <div class="price-desc">Most popular for job seekers</div>
+        <ul class="price-features">
+          <li>Unlimited generations</li>
+          <li>Resume + Cover Letter + LinkedIn</li>
+          <li>Job description matching</li>
+          <li>Follow-up email templates</li>
+          <li>Cancel anytime</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Career+</div>
+        <div class="price-amount">$39 <span>/mo</span></div>
+        <div class="price-desc">For active job seekers</div>
+        <ul class="price-features">
+          <li>Everything in Pro</li>
+          <li>Salary negotiation scripts</li>
+          <li>Interview prep answers</li>
+          <li>Reference request emails</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Resumekit · A <a href="index.html">Cross Holding Group</a> product · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+</footer>
+
+<script>
+(function() {
+  const BASE_URL = window.location.origin;
+  const LS_TOKEN_KEY = 'ch_session_token';
+  const LS_FREE_USED = 'ch_free_used';
+  window.CHGenerate = async function({ prompt, maxTokens = 1200, onLoading, onError }) {
+    const token = localStorage.getItem(LS_TOKEN_KEY) || '';
+    if (onLoading) onLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Session-Token': token },
+        body: JSON.stringify({ prompt, maxTokens }),
+      });
+      const data = await res.json();
+      if (res.status === 402) { if (onLoading) onLoading(false); showPaywall(data.upgrade_url); return null; }
+      if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+      localStorage.setItem(LS_FREE_USED, '1');
+      if (onLoading) onLoading(false);
+      return data.result;
+    } catch (err) {
+      if (onLoading) onLoading(false);
+      if (onError) onError(err.message);
+      return null;
+    }
+  };
+  window.CHActivateToken = function() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token') || params.get('license_key');
+    if (token) { localStorage.setItem(LS_TOKEN_KEY, token); localStorage.removeItem(LS_FREE_USED); window.history.replaceState({}, '', window.location.pathname); return true; }
+    return false;
+  };
+  function showPaywall(upgradeUrl) {
+    const existing = document.getElementById('ch-paywall');
+    if (existing) existing.remove();
+    const modal = document.createElement('div');
+    modal.id = 'ch-paywall';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;';
+    const site = window.CH_SITE || {};
+    const price = site.price || '$19';
+    const color = site.color || '#2563EB';
+    const checkoutUrl = site.checkoutUrl || upgradeUrl || '#';
+    modal.innerHTML = `<div style="background:#fff;border-radius:16px;padding:40px;max-width:420px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.3);"><div style="width:52px;height:52px;border-radius:12px;background:${color};display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:24px;">📄</div><h2 style="font-size:22px;font-weight:700;color:#0D0D0F;margin-bottom:8px;font-family:system-ui">You used your free generation</h2><p style="font-size:15px;color:#64748B;line-height:1.6;margin-bottom:28px;font-family:system-ui">Unlock unlimited resumes, cover letters, and LinkedIn rewrites for just ${price}/month. Cancel anytime.</p><a href="${checkoutUrl}" style="display:block;background:${color};color:#fff;padding:14px 24px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;margin-bottom:12px;font-family:system-ui;">Unlock unlimited — ${price}/mo →</a><button onclick="document.getElementById('ch-paywall').remove()" style="background:none;border:none;font-size:13px;color:#94A3B8;cursor:pointer;font-family:system-ui;padding:8px;">No thanks</button></div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', window.CHActivateToken); } else { window.CHActivateToken(); }
+})();
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+
+function g(id) { return (document.getElementById(id)||{}).value || ''; }
+
+function getPrompt(type) {
+  if (type === 'resume') {
+    return `Write a professional, ATS-optimized resume for the following person. Use clean formatting with clear sections (Summary, Experience, Skills, Education). Use strong action verbs and quantify achievements where possible.
+
+Name: ${g('r-name')}
+Target Role: ${g('r-title')}
+Experience Level: ${g('r-exp')}
+Industry: ${g('r-industry')}
+Current/Recent Role: ${g('r-role')}
+Key Skills & Achievements: ${g('r-skills')}
+Job Description (tailor to this): ${g('r-jd')||'General application'}
+
+Write a complete, formatted resume ready to copy and use. Include a strong professional summary at the top.`;
+  }
+  if (type === 'cover') {
+    return `Write a compelling, personalized cover letter. It should feel genuine, not generic. 3–4 paragraphs, under 350 words.
+
+Applicant: ${g('c-name')}
+Company: ${g('c-company')}
+Role: ${g('c-title')}
+Why this company: ${g('c-why')}
+Key achievements to highlight: ${g('c-achiev')}
+Tone: ${g('c-tone')}
+
+Write a complete cover letter ready to send.`;
+  }
+  if (type === 'linkedin') {
+    return `Write a compelling LinkedIn profile for this person. Include: a punchy headline (under 120 chars), a strong About/Summary section (3–5 paragraphs), and rewritten experience bullet points.
+
+Name: ${g('l-name')}
+Role/Title: ${g('l-title')}
+Background: ${g('l-bg')}
+Goal: ${g('l-goal')}
+Tone: ${g('l-tone')}
+
+Format clearly with sections labeled.`;
+  }
+  if (type === 'followup') {
+    return `Write a ${g('f-type').toLowerCase()} for a job interview. Keep it concise, warm, and professional. Under 200 words.
+
+From: ${g('f-name')}
+To: ${g('f-hm')}
+Role: ${g('f-role')}
+Reference from interview: ${g('f-ref')}
+
+Write the complete email with subject line.`;
+  }
+}
+
+async function generate(type) {
+  const btn = document.querySelector(`#panel-${type} .generate-btn`);
+  const errEl = document.getElementById(`err-${type}`);
+  const outEl = document.getElementById(`out-${type}`);
+  const resultEl = document.getElementById(`result-${type}`);
+
+  errEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+
+  const prompt = getPrompt(type);
+  const result = await window.CHGenerate({
+    prompt,
+    maxTokens: 1800,
+    onError: (msg) => {
+      errEl.textContent = msg;
+      errEl.style.display = 'block';
+    }
+  });
+
+  btn.disabled = false;
+  btn.textContent = '✦ Generate';
+  if (result) {
+    resultEl.textContent = result;
+    outEl.style.display = 'block';
+    outEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+}
+
+function copyOutput(type) {
+  const text = document.getElementById(`result-${type}`).textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector(`#out-${type} .copy-btn`);
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>

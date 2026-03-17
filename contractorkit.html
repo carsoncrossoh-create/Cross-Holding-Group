@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contractorkit — AI Documents for Contractors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<script>
+window.CH_SITE = {
+  name: 'Contractorkit',
+  price: '$25',
+  color: '#D97706',
+  checkoutUrl: 'https://crossholdinggroup.lemonsqueezy.com/checkout/buy/CONTRACTORKIT_PRODUCT_ID'
+};
+</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#1C1917;--surface:#292524;--surface2:#3C3835;--amber:#F59E0B;--amber2:#D97706;--amber-pale:#451A03;--white:#F5F0EB;--white2:#A8A29E;--white3:#57534E;--border:#44403C;--sans:'Barlow',sans-serif;--condensed:'Barlow Condensed',sans-serif}
+body{font-family:var(--sans);background:var(--bg);color:var(--white);font-size:15px;line-height:1.6;min-height:100vh}
+nav{background:var(--surface);border-bottom:1px solid var(--border);padding:0 40px;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.logo{font-family:var(--condensed);font-size:24px;font-weight:700;color:var(--white);text-decoration:none;letter-spacing:.02em}
+.logo span{color:var(--amber)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:13px;color:var(--white2);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{background:var(--amber);color:#1C1917;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:600;text-decoration:none;transition:background .2s;font-family:var(--condensed);letter-spacing:.04em;text-transform:uppercase}
+.nav-cta:hover{background:var(--amber2)}
+.hero{max-width:1100px;margin:0 auto;padding:64px 24px 40px}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.25);color:var(--amber);font-size:11px;font-weight:600;padding:5px 12px;border-radius:4px;margin-bottom:20px;font-family:var(--condensed);letter-spacing:.08em;text-transform:uppercase}
+.hero h1{font-family:var(--condensed);font-size:clamp(36px,5vw,72px);font-weight:700;line-height:.95;color:var(--white);margin-bottom:20px;letter-spacing:-.5px;text-transform:uppercase}
+.hero h1 span{color:var(--amber)}
+.hero p{font-size:16px;font-weight:300;color:var(--white2);line-height:1.75;margin-bottom:28px;max-width:520px}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:48px}
+.btn-main{background:var(--amber);color:#1C1917;padding:13px 28px;border-radius:6px;font-size:14px;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:none;cursor:pointer;transition:all .2s;font-family:var(--condensed);letter-spacing:.04em;text-transform:uppercase}
+.btn-main:hover{background:var(--amber2);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:var(--white2);padding:13px 24px;border-radius:6px;font-size:14px;font-weight:500;text-decoration:none;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.btn-ghost:hover{border-color:var(--amber);color:var(--white)}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border-radius:10px;overflow:hidden;max-width:520px}
+.stat{background:var(--surface);padding:20px 24px}
+.stat-num{font-family:var(--condensed);font-size:32px;font-weight:700;color:var(--amber);line-height:1}
+.stat-label{font-size:12px;color:var(--white2);margin-top:4px}
+.main{max-width:1100px;margin:0 auto;padding:0 24px 60px}
+.tool-card{background:var(--surface);border-radius:12px;border:1px solid var(--border);overflow:hidden;margin-bottom:20px}
+.tool-tabs{display:flex;border-bottom:1px solid var(--border);background:var(--bg);flex-wrap:wrap}
+.tool-tab{padding:13px 20px;font-size:13px;font-weight:500;color:var(--white2);cursor:pointer;border-bottom:2px solid transparent;background:none;border-top:none;border-left:none;border-right:none;transition:all .2s;white-space:nowrap;font-family:var(--sans)}
+.tool-tab.active{color:var(--amber);border-bottom-color:var(--amber);background:var(--surface)}
+.tool-panel{display:none;padding:28px}
+.tool-panel.active{display:block}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group.full{grid-column:1/-1}
+label{font-size:12px;font-weight:500;color:var(--white2);letter-spacing:.04em;text-transform:uppercase}
+input,textarea,select{padding:10px 14px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:var(--sans);color:var(--white);background:var(--surface2);transition:border-color .2s;width:100%;resize:vertical}
+input::placeholder,textarea::placeholder{color:var(--white3)}
+input:focus,textarea:focus,select:focus{outline:none;border-color:var(--amber);box-shadow:0 0 0 3px rgba(245,158,11,.1)}
+textarea{min-height:90px}
+select option{background:var(--surface2)}
+.generate-btn{width:100%;background:var(--amber);color:#1C1917;border:none;padding:14px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;gap:8px;font-family:var(--condensed);letter-spacing:.06em;text-transform:uppercase}
+.generate-btn:hover{background:var(--amber2)}
+.generate-btn:disabled{opacity:.5;cursor:not-allowed}
+.output-area{margin-top:20px;display:none}
+.output-label{font-size:11px;font-weight:600;color:var(--white2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
+.copy-btn{background:rgba(245,158,11,.15);color:var(--amber);border:none;padding:5px 12px;border-radius:4px;font-size:11px;font-weight:600;cursor:pointer;font-family:var(--condensed);letter-spacing:.04em;text-transform:uppercase;transition:all .2s}
+.copy-btn:hover{background:rgba(245,158,11,.25)}
+.output-box{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:18px;font-size:13px;line-height:1.8;color:var(--white);white-space:pre-wrap;min-height:120px}
+.error-msg{background:rgba(220,38,38,.1);border:1px solid rgba(220,38,38,.3);border-radius:6px;padding:12px 16px;font-size:13px;color:#FCA5A5;margin-top:12px;display:none}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:20px}
+.feat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:20px;transition:border-color .2s}
+.feat:hover{border-color:var(--amber)}
+.feat-icon{font-size:22px;margin-bottom:10px}
+.feat-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px;font-family:var(--condensed);letter-spacing:.02em}
+.feat-desc{font-size:12px;color:var(--white2);line-height:1.6}
+.pricing{background:var(--surface);border-radius:12px;border:1px solid var(--border);padding:32px;text-align:center;margin-bottom:20px}
+.pricing h2{font-family:var(--condensed);font-size:32px;font-weight:700;margin-bottom:8px;text-transform:uppercase;letter-spacing:.02em}
+.pricing p{font-size:15px;color:var(--white2);margin-bottom:28px}
+.price-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.price-card{border:1px solid var(--border);border-radius:10px;padding:20px;text-align:left;background:var(--bg)}
+.price-card.featured{border-color:var(--amber);background:rgba(245,158,11,.06)}
+.price-name{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--white2);margin-bottom:8px;font-family:var(--condensed)}
+.price-amount{font-family:var(--condensed);font-size:32px;font-weight:700;color:var(--white);margin-bottom:4px}
+.price-amount span{font-size:14px;font-weight:400;color:var(--white2)}
+.price-desc{font-size:12px;color:var(--white2);margin-bottom:14px;line-height:1.5}
+.price-features{list-style:none;display:flex;flex-direction:column;gap:6px}
+.price-features li{font-size:12px;color:var(--white);display:flex;align-items:center;gap:6px}
+.price-features li::before{content:'✓';color:var(--amber);font-weight:700}
+footer{background:var(--surface);border-top:1px solid var(--border);color:var(--white3);text-align:center;padding:24px;font-size:12px}
+footer a{color:var(--white3);text-decoration:none}
+footer a:hover{color:var(--white)}
+@media(max-width:768px){.form-grid{grid-template-columns:1fr}.features{grid-template-columns:1fr 1fr}.price-cards{grid-template-columns:1fr}.stats{grid-template-columns:1fr}nav{padding:0 16px}.main,.hero{padding-left:16px;padding-right:16px}.tool-tabs{overflow-x:auto}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="index.html" class="logo">Contractor<span>kit</span></a>
+  <div class="nav-links">
+    <a href="#tool">Get started</a>
+    <a href="#pricing">Pricing</a>
+  </div>
+  <a href="#tool" class="nav-cta">Try free</a>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge">Built for contractors</div>
+  <h1>Win more jobs.<br><span>Less paperwork.</span></h1>
+  <p>Professional proposals, estimates, contracts, and client letters — generated in seconds. Stop losing bids because your paperwork looks unprofessional.</p>
+  <div class="hero-btns">
+    <a href="#tool" class="btn-main">Generate free →</a>
+    <a href="#pricing" class="btn-ghost">See pricing</a>
+  </div>
+  <div class="stats">
+    <div class="stat"><div class="stat-num">10M+</div><div class="stat-label">Contractors in the US</div></div>
+    <div class="stat"><div class="stat-num">$5K</div><div class="stat-label">Avg job lost to bad proposals</div></div>
+    <div class="stat"><div class="stat-num">3 min</div><div class="stat-label">To write a full proposal</div></div>
+  </div>
+</div>
+
+<div class="main">
+  <div class="features" id="how">
+    <div class="feat"><div class="feat-icon">📋</div><div class="feat-title">Job Proposals</div><p class="feat-desc">Professional proposals that win bids. Detailed scope, timeline, and pricing — ready to send.</p></div>
+    <div class="feat"><div class="feat-icon">💰</div><div class="feat-title">Estimates</div><p class="feat-desc">Itemized estimates with materials, labor, and totals. Looks like you hired an office manager.</p></div>
+    <div class="feat"><div class="feat-icon">📄</div><div class="feat-title">Contracts</div><p class="feat-desc">Solid contracts with scope, payment terms, and change order language. Protect yourself.</p></div>
+    <div class="feat"><div class="feat-icon">✉️</div><div class="feat-title">Client Letters</div><p class="feat-desc">Follow-ups, completion letters, dispute responses, late payment notices — all handled.</p></div>
+  </div>
+
+  <div class="tool-card" id="tool">
+    <div class="tool-tabs">
+      <button class="tool-tab active" onclick="switchTab('proposal',this)">Job Proposal</button>
+      <button class="tool-tab" onclick="switchTab('estimate',this)">Estimate</button>
+      <button class="tool-tab" onclick="switchTab('contract',this)">Contract</button>
+      <button class="tool-tab" onclick="switchTab('followup',this)">Follow-up</button>
+      <button class="tool-tab" onclick="switchTab('completion',this)">Completion Letter</button>
+      <button class="tool-tab" onclick="switchTab('dispute',this)">Dispute / Late Pay</button>
+    </div>
+
+    <!-- PROPOSAL -->
+    <div class="tool-panel active" id="panel-proposal">
+      <div class="form-grid">
+        <div class="form-group"><label>Your business name</label><input id="pr-biz" placeholder="Smith Construction LLC"></div>
+        <div class="form-group"><label>Client name</label><input id="pr-client" placeholder="John & Mary Davis"></div>
+        <div class="form-group"><label>Trade / type of work</label><input id="pr-trade" placeholder="General Contractor / Kitchen Remodel"></div>
+        <div class="form-group"><label>Estimated price range</label><input id="pr-price" placeholder="$18,000 – $22,000"></div>
+        <div class="form-group full"><label>Scope of work — what exactly are you doing?</label><textarea id="pr-scope" placeholder="Full kitchen remodel: demo existing cabinets and counters, install new shaker cabinets, quartz countertops, tile backsplash, new sink and faucet, paint, new lighting fixtures..."></textarea></div>
+        <div class="form-group"><label>Estimated timeline</label><input id="pr-timeline" placeholder="3–4 weeks, starting March 28"></div>
+        <div class="form-group"><label>Payment terms</label><select id="pr-pay"><option>50% deposit, 50% on completion</option><option>1/3 deposit, 1/3 midpoint, 1/3 completion</option><option>Net 30 on completion</option><option>Weekly draws</option></select></div>
+        <div class="form-group full"><label>What's included / what's not included</label><textarea id="pr-incl" placeholder="Included: all labor, materials listed above, cleanup. Not included: appliances, electrical panel upgrades, plumbing rough-in changes..."></textarea></div>
+      </div>
+      <button class="generate-btn" onclick="generate('proposal')">▶ Generate proposal</button>
+      <div class="error-msg" id="err-proposal"></div>
+      <div class="output-area" id="out-proposal">
+        <div class="output-label">Your proposal <button class="copy-btn" onclick="copyOutput('proposal')">Copy</button></div>
+        <div class="output-box" id="result-proposal"></div>
+      </div>
+    </div>
+
+    <!-- ESTIMATE -->
+    <div class="tool-panel" id="panel-estimate">
+      <div class="form-grid">
+        <div class="form-group"><label>Business name</label><input id="est-biz" placeholder="Smith Construction LLC"></div>
+        <div class="form-group"><label>Client name</label><input id="est-client" placeholder="Davis Residence"></div>
+        <div class="form-group full"><label>Job description</label><input id="est-job" placeholder="Master bathroom renovation"></div>
+        <div class="form-group full"><label>Line items — materials & labor (list what you know, Contractorkit fills in the rest)</label><textarea id="est-items" placeholder="Demo existing tile and vanity, new 60x32 walk-in shower with tile, new double vanity with quartz top, new toilet, paint, exhaust fan, LED mirrors..."></textarea></div>
+        <div class="form-group"><label>Approximate total</label><input id="est-total" placeholder="$14,500"></div>
+        <div class="form-group"><label>Valid for</label><select id="est-valid"><option>15 days</option><option selected>30 days</option><option>60 days</option></select></div>
+      </div>
+      <button class="generate-btn" onclick="generate('estimate')">▶ Generate estimate</button>
+      <div class="error-msg" id="err-estimate"></div>
+      <div class="output-area" id="out-estimate">
+        <div class="output-label">Your estimate <button class="copy-btn" onclick="copyOutput('estimate')">Copy</button></div>
+        <div class="output-box" id="result-estimate"></div>
+      </div>
+    </div>
+
+    <!-- CONTRACT -->
+    <div class="tool-panel" id="panel-contract">
+      <div class="form-grid">
+        <div class="form-group"><label>Contractor name / business</label><input id="ct-contractor" placeholder="Smith Construction LLC"></div>
+        <div class="form-group"><label>Client name</label><input id="ct-client" placeholder="John & Mary Davis"></div>
+        <div class="form-group"><label>Project address</label><input id="ct-address" placeholder="123 Oak Street, Columbus, OH"></div>
+        <div class="form-group"><label>Contract value</label><input id="ct-value" placeholder="$20,000"></div>
+        <div class="form-group full"><label>Scope of work</label><textarea id="ct-scope" placeholder="Full kitchen remodel including..."></textarea></div>
+        <div class="form-group"><label>Start date</label><input id="ct-start" placeholder="March 28, 2026"></div>
+        <div class="form-group"><label>Completion date</label><input id="ct-end" placeholder="April 25, 2026"></div>
+        <div class="form-group full"><label>Payment schedule</label><textarea id="ct-pay" placeholder="$10,000 deposit upon signing, $10,000 upon substantial completion..."></textarea></div>
+      </div>
+      <button class="generate-btn" onclick="generate('contract')">▶ Generate contract</button>
+      <div class="error-msg" id="err-contract"></div>
+      <div class="output-area" id="out-contract">
+        <div class="output-label">Your contract <button class="copy-btn" onclick="copyOutput('contract')">Copy</button></div>
+        <div class="output-box" id="result-contract"></div>
+      </div>
+    </div>
+
+    <!-- FOLLOW UP -->
+    <div class="tool-panel" id="panel-followup">
+      <div class="form-grid">
+        <div class="form-group"><label>Your name</label><input id="fu-name" placeholder="Mike Smith"></div>
+        <div class="form-group"><label>Client name</label><input id="fu-client" placeholder="The Davis Family"></div>
+        <div class="form-group full"><label>Job you quoted</label><input id="fu-job" placeholder="Kitchen remodel at 123 Oak Street"></div>
+        <div class="form-group"><label>When you sent the quote</label><input id="fu-when" placeholder="Last Thursday"></div>
+        <div class="form-group"><label>Type</label><select id="fu-type"><option selected>Friendly follow-up</option><option>Checking in after site visit</option><option>Following up on signed contract</option></select></div>
+      </div>
+      <button class="generate-btn" onclick="generate('followup')">▶ Generate follow-up</button>
+      <div class="error-msg" id="err-followup"></div>
+      <div class="output-area" id="out-followup">
+        <div class="output-label">Follow-up message <button class="copy-btn" onclick="copyOutput('followup')">Copy</button></div>
+        <div class="output-box" id="result-followup"></div>
+      </div>
+    </div>
+
+    <!-- COMPLETION -->
+    <div class="tool-panel" id="panel-completion">
+      <div class="form-grid">
+        <div class="form-group"><label>Your business</label><input id="comp-biz" placeholder="Smith Construction LLC"></div>
+        <div class="form-group"><label>Client name</label><input id="comp-client" placeholder="Davis Residence"></div>
+        <div class="form-group full"><label>What was completed</label><input id="comp-job" placeholder="Full kitchen remodel at 123 Oak Street"></div>
+        <div class="form-group full"><label>Any final notes, warranty info, or care instructions</label><textarea id="comp-notes" placeholder="Grout needs 72hrs before getting wet, cabinet doors may need slight adjustment after first month, 1-year labor warranty included..."></textarea></div>
+        <div class="form-group"><label>Balance due</label><input id="comp-bal" placeholder="$10,000"></div>
+      </div>
+      <button class="generate-btn" onclick="generate('completion')">▶ Generate completion letter</button>
+      <div class="error-msg" id="err-completion"></div>
+      <div class="output-area" id="out-completion">
+        <div class="output-label">Completion letter <button class="copy-btn" onclick="copyOutput('completion')">Copy</button></div>
+        <div class="output-box" id="result-completion"></div>
+      </div>
+    </div>
+
+    <!-- DISPUTE -->
+    <div class="tool-panel" id="panel-dispute">
+      <div class="form-grid">
+        <div class="form-group"><label>Your business</label><input id="dis-biz" placeholder="Smith Construction LLC"></div>
+        <div class="form-group"><label>Client name</label><input id="dis-client" placeholder="Davis Residence"></div>
+        <div class="form-group"><label>Type of letter</label><select id="dis-type"><option selected>Late payment notice</option><option>Final demand before collections</option><option>Dispute response</option><option>Lien warning</option><option>Change order request</option></select></div>
+        <div class="form-group"><label>Amount owed</label><input id="dis-amount" placeholder="$10,000"></div>
+        <div class="form-group full"><label>Situation — what happened?</label><textarea id="dis-situation" placeholder="Job was completed on March 25. Final invoice sent March 26 for $10,000. Client has not responded or paid despite two phone calls and one text..."></textarea></div>
+        <div class="form-group"><label>Tone</label><select id="dis-tone"><option selected>Firm but professional</option><option>Final warning</option><option>Dispute / rebuttal</option></select></div>
+      </div>
+      <button class="generate-btn" onclick="generate('dispute')">▶ Generate letter</button>
+      <div class="error-msg" id="err-dispute"></div>
+      <div class="output-area" id="out-dispute">
+        <div class="output-label">Your letter <button class="copy-btn" onclick="copyOutput('dispute')">Copy</button></div>
+        <div class="output-box" id="result-dispute"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pricing" id="pricing">
+    <h2>Stop losing jobs to better paperwork</h2>
+    <p>One won job pays for a year of Contractorkit.</p>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="price-name">Free</div>
+        <div class="price-amount">$0 <span>/mo</span></div>
+        <div class="price-desc">See what it can do</div>
+        <ul class="price-features"><li>1 free generation</li><li>All document types</li></ul>
+      </div>
+      <div class="price-card featured">
+        <div class="price-name">Contractor</div>
+        <div class="price-amount">$25 <span>/mo</span></div>
+        <div class="price-desc">Best value</div>
+        <ul class="price-features">
+          <li>Unlimited generations</li>
+          <li>Proposals & estimates</li>
+          <li>Contracts & change orders</li>
+          <li>Follow-ups & dispute letters</li>
+          <li>Cancel anytime</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-name">Business</div>
+        <div class="price-amount">$59 <span>/mo</span></div>
+        <div class="price-desc">For growing companies</div>
+        <ul class="price-features">
+          <li>Everything in Contractor</li>
+          <li>Multiple team members</li>
+          <li>Subcontractor agreements</li>
+          <li>Lien waiver templates</li>
+          <li>Priority support</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>© 2026 Contractorkit · A <a href="index.html">Cross Holding Group</a> product · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+</footer>
+
+<script>
+(function() {
+  const BASE_URL = window.location.origin;
+  const LS_TOKEN_KEY = 'ch_session_token';
+  const LS_FREE_USED = 'ch_free_used';
+  window.CHGenerate = async function({ prompt, maxTokens = 1200, onLoading, onError }) {
+    const token = localStorage.getItem(LS_TOKEN_KEY) || '';
+    if (onLoading) onLoading(true);
+    try {
+      const res = await fetch(`${BASE_URL}/api/generate`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Session-Token': token },
+        body: JSON.stringify({ prompt, maxTokens }),
+      });
+      const data = await res.json();
+      if (res.status === 402) { if (onLoading) onLoading(false); showPaywall(data.upgrade_url); return null; }
+      if (!res.ok) throw new Error(data.error || 'Something went wrong. Please try again.');
+      localStorage.setItem(LS_FREE_USED, '1');
+      if (onLoading) onLoading(false);
+      return data.result;
+    } catch (err) {
+      if (onLoading) onLoading(false);
+      if (onError) onError(err.message);
+      return null;
+    }
+  };
+  window.CHActivateToken = function() {
+    const params = new URLSearchParams(window.location.search);
+    const token = params.get('token') || params.get('license_key');
+    if (token) { localStorage.setItem(LS_TOKEN_KEY, token); localStorage.removeItem(LS_FREE_USED); window.history.replaceState({}, '', window.location.pathname); return true; }
+    return false;
+  };
+  function showPaywall(upgradeUrl) {
+    const existing = document.getElementById('ch-paywall');
+    if (existing) existing.remove();
+    const modal = document.createElement('div');
+    modal.id = 'ch-paywall';
+    modal.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,0.85);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:24px;';
+    const site = window.CH_SITE || {};
+    const price = site.price || '$25';
+    const color = site.color || '#D97706';
+    const checkoutUrl = site.checkoutUrl || upgradeUrl || '#';
+    modal.innerHTML = `<div style="background:#1C1917;border:1px solid #44403C;border-radius:16px;padding:40px;max-width:420px;width:100%;text-align:center;box-shadow:0 24px 64px rgba(0,0,0,0.5);"><div style="font-size:40px;margin-bottom:16px;">🔨</div><h2 style="font-size:22px;font-weight:700;color:#F5F0EB;margin-bottom:8px;font-family:system-ui">You used your free generation</h2><p style="font-size:15px;color:#A8A29E;line-height:1.6;margin-bottom:28px;font-family:system-ui">Unlock unlimited proposals, estimates, and contracts for just ${price}/month. One won job pays for a year.</p><a href="${checkoutUrl}" style="display:block;background:${color};color:#1C1917;padding:14px 24px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;margin-bottom:12px;font-family:system-ui;">Unlock unlimited — ${price}/mo →</a><button onclick="document.getElementById('ch-paywall').remove()" style="background:none;border:none;font-size:13px;color:#57534E;cursor:pointer;font-family:system-ui;padding:8px;">No thanks</button></div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', (e) => { if (e.target === modal) modal.remove(); });
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', window.CHActivateToken); } else { window.CHActivateToken(); }
+})();
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tool-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tool-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('panel-' + name).classList.add('active');
+}
+function g(id) { return (document.getElementById(id)||{}).value || ''; }
+
+function getPrompt(type) {
+  if (type === 'proposal') return `Write a professional, detailed job proposal for a contractor. It should look impressive and win the bid.\n\nContractor: ${g('pr-biz')}\nClient: ${g('pr-client')}\nTrade/Work type: ${g('pr-trade')}\nPrice range: ${g('pr-price')}\nScope of work: ${g('pr-scope')}\nTimeline: ${g('pr-timeline')}\nPayment terms: ${g('pr-pay')}\nIncluded/excluded: ${g('pr-incl')}\n\nWrite a complete, formatted proposal with: Introduction, Scope of Work, Timeline, Investment/Pricing, Payment Schedule, What's Included, Terms, and a professional closing. Make it look like it came from a top contractor.`;
+  if (type === 'estimate') return `Write a professional itemized estimate.\n\nContractor: ${g('est-biz')}\nClient: ${g('est-client')}\nJob: ${g('est-job')}\nLine items: ${g('est-items')}\nTotal: ${g('est-total')}\nValid for: ${g('est-valid')}\n\nCreate a clear, itemized estimate with materials and labor broken out. Include terms, validity period, and a professional header.`;
+  if (type === 'contract') return `Write a solid contractor agreement/contract.\n\nContractor: ${g('ct-contractor')}\nClient: ${g('ct-client')}\nProperty: ${g('ct-address')}\nValue: ${g('ct-value')}\nScope: ${g('ct-scope')}\nStart: ${g('ct-start')}\nCompletion: ${g('ct-end')}\nPayment: ${g('ct-pay')}\n\nInclude: scope of work, timeline, payment schedule, change order clause, warranty, dispute resolution, termination clause, and signature blocks. Professional and protective of the contractor.`;
+  if (type === 'followup') return `Write a professional follow-up message from a contractor to a potential client.\n\nContractor: ${g('fu-name')}\nClient: ${g('fu-client')}\nJob quoted: ${g('fu-job')}\nQuote sent: ${g('fu-when')}\nType: ${g('fu-type')}\n\nShort, professional, not pushy. Include subject line. Ready to send as email or text.`;
+  if (type === 'completion') return `Write a job completion letter from a contractor.\n\nBusiness: ${g('comp-biz')}\nClient: ${g('comp-client')}\nJob completed: ${g('comp-job')}\nNotes/warranty: ${g('comp-notes')}\nBalance due: ${g('comp-bal')}\n\nProfessional and warm. Thank the client, note the job is complete, include any care instructions, state the remaining balance, and invite them to reach out with any questions.`;
+  if (type === 'dispute') return `Write a ${g('dis-type').toLowerCase()} letter from a contractor.\n\nBusiness: ${g('dis-biz')}\nClient: ${g('dis-client')}\nAmount owed: ${g('dis-amount')}\nSituation: ${g('dis-situation')}\nTone: ${g('dis-tone')}\n\nProfessional, firm, and legally appropriate. Include clear timeline, what is owed, consequences if unpaid, and contact info. Do not be threatening but be clear about next steps.`;
+}
+
+async function generate(type) {
+  const btn = document.querySelector(`#panel-${type} .generate-btn`);
+  const errEl = document.getElementById(`err-${type}`);
+  const outEl = document.getElementById(`out-${type}`);
+  const resultEl = document.getElementById(`result-${type}`);
+  errEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Generating…';
+  const result = await window.CHGenerate({ prompt: getPrompt(type), maxTokens: 1800, onError: (msg) => { errEl.textContent = msg; errEl.style.display = 'block'; } });
+  btn.disabled = false;
+  btn.innerHTML = '▶ Generate';
+  if (result) { resultEl.textContent = result; outEl.style.display = 'block'; outEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); }
+}
+
+function copyOutput(type) {
+  navigator.clipboard.writeText(document.getElementById(`result-${type}`).textContent).then(() => {
+    const btn = document.querySelector(`#out-${type} .copy-btn`);
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy', 2000);
+  });
+}
+</script>
+</body>
+</html>
