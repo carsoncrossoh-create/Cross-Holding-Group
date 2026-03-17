@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rentscribe — Landlord Documents Without the Lawyer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --teal:#155E63;--teal2:#1A7278;--teal3:#1E8890;--teal-pale:#EAF5F6;
+  --slate-dark:#1C2B3A;--slate:#4A6378;--mist:#8BA0B0;
+  --off-white:#F6F8FA;--white:#FFFFFF;--border:#DDE5EC;
+  --amber:#D97706;--amber-pale:#FFF8EC;
+  --serif:'Libre Baskerville',Georgia,serif;--sans:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--off-white);color:var(--slate-dark);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;
+  justify-content:space-between;padding:16px 52px;
+  background:rgba(246,248,250,.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border)}
+.logo{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--slate-dark);text-decoration:none}
+.logo span{color:var(--teal)}
+.nav-r{display:flex;gap:28px;align-items:center}
+.nav-r a{text-decoration:none;color:var(--mist);font-size:14px;font-weight:400;transition:color .2s}
+.nav-r a:hover{color:var(--slate-dark)}
+.nav-cta{background:var(--teal)!important;color:#fff!important;padding:9px 22px;
+  border-radius:6px;font-weight:500!important;transition:all .2s!important;font-size:14px!important}
+.nav-cta:hover{background:var(--teal2)!important;transform:translateY(-1px)}
+
+.page{display:none}.page.active{display:block}
+
+/* HERO */
+.hero{min-height:100vh;padding:120px 52px 80px;max-width:1200px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--teal-pale);
+  border:1px solid rgba(21,94,99,.15);color:var(--teal);font-size:12px;font-weight:500;
+  padding:6px 14px;border-radius:4px;margin-bottom:24px}
+.hero h1{font-family:var(--serif);font-size:clamp(34px,4vw,54px);line-height:1.12;
+  margin-bottom:20px;font-weight:700}
+.hero h1 em{font-style:italic;color:var(--teal);font-weight:400}
+.hero p{font-size:16px;color:var(--slate);line-height:1.8;max-width:400px;font-weight:300;margin-bottom:32px}
+.btn-teal{background:var(--teal);color:#fff;padding:14px 28px;border-radius:6px;
+  font-family:var(--sans);font-size:14px;font-weight:500;border:none;cursor:pointer;
+  text-decoration:none;display:inline-block;transition:all .2s;
+  box-shadow:0 4px 16px rgba(21,94,99,.2)}
+.btn-teal:hover{background:var(--teal2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(21,94,99,.25)}
+.hero-disclaimer{font-size:12px;color:var(--mist);margin-top:14px;font-weight:300;
+  padding:10px 14px;background:var(--amber-pale);border:1px solid rgba(217,119,6,.15);
+  border-radius:4px;max-width:400px}
+
+/* DOCUMENT VISUAL */
+.doc-visual{background:var(--white);border-radius:12px;border:1px solid var(--border);
+  box-shadow:0 16px 48px rgba(28,43,58,.08);overflow:hidden;
+  animation:levitate 7s ease-in-out infinite}
+@keyframes levitate{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.dv-header{background:var(--teal);padding:20px 24px;display:flex;align-items:center;gap:12px}
+.dv-icon{width:36px;height:36px;background:rgba(255,255,255,.15);border-radius:6px;
+  display:flex;align-items:center;justify-content:center;font-size:18px}
+.dv-title{font-family:var(--serif);font-size:16px;color:#fff;font-weight:700}
+.dv-sub{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px;font-weight:300}
+.dv-body{padding:24px}
+.dv-section{margin-bottom:18px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+.dv-section:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.dv-sec-title{font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.dv-line{height:7px;border-radius:3px;background:var(--off-white);margin-bottom:7px}
+.dv-line.short{width:60%}.dv-line.med{width:80%}
+.dv-pills{display:flex;gap:8px;flex-wrap:wrap}
+.dv-pill{font-size:11px;padding:4px 10px;border-radius:3px;background:var(--teal-pale);color:var(--teal);font-weight:500}
+.dv-badge{display:inline-flex;align-items:center;gap:6px;background:#ECFDF5;color:#065F46;
+  font-size:12px;font-weight:500;padding:6px 12px;border-radius:4px;border:1px solid #A7F3D0;margin-top:4px}
+
+/* STATS */
+.stats-strip{background:var(--slate-dark);padding:32px 52px;display:flex;
+  justify-content:center;gap:80px;flex-wrap:wrap}
+.sstat-n{font-family:var(--serif);font-size:32px;color:#fff;font-style:italic;margin-bottom:4px}
+.sstat-l{font-size:12px;color:var(--mist);letter-spacing:.06em}
+
+/* SECTIONS */
+.section{padding:88px 52px;max-width:1200px;margin:0 auto}
+.bg-white{background:var(--white)}
+.sec-label{font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:14px;display:block}
+.section h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);line-height:1.12;margin-bottom:16px;font-weight:700}
+.section h2 em{font-style:italic;color:var(--teal);font-weight:400}
+.section>.sub{font-size:16px;color:var(--slate);max-width:460px;font-weight:300;line-height:1.75;margin-bottom:52px}
+
+/* DOC TYPES GRID */
+.doc-types{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.dt-card{background:var(--white);border:1px solid var(--border);border-radius:8px;padding:28px;transition:all .2s}
+.dt-card:hover{border-color:var(--teal);transform:translateY(-3px);box-shadow:0 10px 28px rgba(21,94,99,.08)}
+.dt-icon{width:42px;height:42px;background:var(--teal-pale);border-radius:8px;
+  display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
+.dt-card h3{font-family:var(--serif);font-size:17px;font-weight:700;margin-bottom:8px;color:var(--slate-dark)}
+.dt-card p{font-size:13px;color:var(--slate);line-height:1.6;font-weight:300}
+.dt-saves{font-size:12px;color:var(--teal);font-weight:500;margin-top:12px;display:block}
+
+/* PRICING */
+.price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.ptc{background:var(--white);border-radius:8px;padding:32px;border:1px solid var(--border);position:relative;transition:all .2s}
+.ptc:hover{box-shadow:0 10px 32px rgba(21,94,99,.08);transform:translateY(-3px)}
+.ptc.feat{background:var(--teal);border-color:var(--teal);transform:scale(1.03)}
+.ptc.feat:hover{transform:scale(1.03) translateY(-3px)}
+.ptc-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:var(--amber);color:#fff;font-size:10px;font-weight:500;padding:4px 12px;
+  border-radius:3px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.ptc-tier{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.ptc.feat .ptc-tier{color:rgba(255,255,255,.65)}
+.ptc-amt{font-family:var(--serif);font-size:48px;font-weight:700;color:var(--slate-dark);line-height:1;margin-bottom:4px}
+.ptc.feat .ptc-amt{color:#fff}
+.ptc-amt sup{font-size:20px;vertical-align:super}
+.ptc-per{font-size:13px;color:var(--mist);margin-bottom:20px;font-weight:300}
+.ptc.feat .ptc-per{color:rgba(255,255,255,.5)}
+.ptc-div{height:1px;background:var(--border);margin:20px 0}
+.ptc.feat .ptc-div{background:rgba(255,255,255,.15)}
+.ptc-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.ptc-feats li{font-size:13px;color:var(--slate);display:flex;align-items:center;gap:8px;font-weight:300}
+.ptc.feat .ptc-feats li{color:rgba(255,255,255,.65)}
+.ptc-feats li::before{content:'✓';color:var(--teal);font-size:11px;flex-shrink:0;font-weight:700}
+.ptc.feat .ptc-feats li::before{color:rgba(255,255,255,.5)}
+.btn-t{width:100%;padding:12px;border-radius:6px;background:var(--teal);color:#fff;
+  font-family:var(--sans);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
+.btn-t:hover{background:var(--teal2)}
+.btn-ot{width:100%;padding:12px;border-radius:6px;border:1px solid var(--border);
+  color:var(--slate-dark);font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;background:transparent;transition:all .2s}
+.btn-ot:hover{border-color:var(--teal);color:var(--teal)}
+.btn-wt{width:100%;padding:12px;border-radius:6px;background:#fff;color:var(--teal);
+  font-family:var(--sans);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
+.btn-wt:hover{background:var(--teal-pale)}
+
+/* GENERATOR */
+#page-gen{background:var(--off-white);padding-top:90px}
+.gen-wrap{max-width:840px;margin:0 auto;padding:48px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:none;
+  color:var(--mist);font-family:var(--sans);font-size:14px;cursor:pointer;margin-bottom:28px;padding:0;transition:color .2s}
+.back-btn:hover{color:var(--slate-dark)}
+.gen-head{text-align:center;margin-bottom:48px}
+.gen-head h1{font-family:var(--serif);font-size:clamp(28px,4vw,44px);font-weight:700;line-height:1.12;margin-bottom:12px;color:var(--slate-dark)}
+.gen-head h1 em{font-style:italic;color:var(--teal);font-weight:400}
+.gen-head p{font-size:15px;color:var(--slate);font-weight:300;max-width:380px;margin:0 auto}
+.disclaimer-box{background:var(--amber-pale);border:1px solid rgba(217,119,6,.2);border-radius:6px;
+  padding:12px 16px;font-size:13px;color:var(--amber);margin-bottom:24px;font-weight:400;text-align:center}
+
+.gen-card{background:var(--white);border-radius:12px;padding:40px;border:1px solid var(--border);box-shadow:0 2px 16px rgba(28,43,58,.05)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-full{grid-column:1/-1}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:12px;font-weight:500;color:var(--slate-dark);letter-spacing:.03em}
+.fi4,.fs4,.ft4{width:100%;padding:10px 14px;border-radius:6px;border:1px solid var(--border);
+  background:var(--off-white);font-family:var(--sans);font-size:14px;color:var(--slate-dark);outline:none;transition:border-color .2s}
+.fi4:focus,.fs4:focus,.ft4:focus{border-color:var(--teal);background:var(--white)}
+.fs4{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238BA0B0' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;background-color:var(--off-white);cursor:pointer}
+.fs4:focus{background-color:var(--white)}
+.ft4{resize:vertical;min-height:80px;line-height:1.5}
+.sec-lbl4{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--teal);grid-column:1/-1;margin-top:10px;padding-top:14px;border-top:1px solid var(--border)}
+.gen-btn4{width:100%;padding:14px;border-radius:6px;background:var(--teal);color:#fff;
+  font-family:var(--sans);font-size:14px;font-weight:500;border:none;cursor:pointer;
+  margin-top:28px;transition:all .2s;box-shadow:0 4px 16px rgba(21,94,99,.2)}
+.gen-btn4:hover:not(:disabled){background:var(--teal2);transform:translateY(-1px)}
+.gen-btn4:disabled{opacity:.6;cursor:not-allowed}
+
+.loading-wrap{display:none;text-align:center;padding:52px}
+.loading-wrap.show{display:block}
+.spinner{width:36px;height:36px;border:2px solid var(--border);border-top-color:var(--teal);
+  border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-title{font-family:var(--serif);font-size:20px;font-weight:700;color:var(--slate-dark);margin-bottom:8px}
+.load-sub{font-size:14px;color:var(--mist);font-weight:300}
+
+.results-wrap{display:none}.results-wrap.show{display:block}
+.res-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.res-hdr h3{font-family:var(--serif);font-size:24px;font-weight:700;color:var(--slate-dark)}
+.res-hdr h3 em{font-style:italic;color:var(--teal);font-weight:400}
+.res-acts{display:flex;gap:10px}
+.btn-ca4{padding:9px 18px;border-radius:6px;background:var(--teal);color:#fff;
+  font-family:var(--sans);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
+.btn-ca4.copied{background:#065F46}
+.btn-ed4{padding:9px 18px;border-radius:6px;border:1px solid var(--border);
+  color:var(--mist);font-family:var(--sans);font-size:13px;cursor:pointer;background:transparent;transition:all .2s}
+.btn-ed4:hover{border-color:var(--slate-dark);color:var(--slate-dark)}
+
+.out-secs4{display:flex;flex-direction:column;gap:12px}
+.out-sec4{border:1px solid var(--border);border-radius:8px;overflow:hidden;background:var(--white)}
+.out-sec4-h{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--teal-pale);border-bottom:1px solid var(--border)}
+.out-sec4-t{font-size:12px;font-weight:500;color:var(--teal);letter-spacing:.06em;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.out-sec4-cp{font-size:12px;color:var(--mist);background:none;border:1px solid var(--border);
+  padding:4px 10px;border-radius:4px;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.out-sec4-cp:hover{border-color:var(--teal);color:var(--teal)}
+.out-sec4-cp.copied{border-color:#065F46;color:#065F46}
+.out-sec4-body{padding:18px;font-size:14px;color:var(--slate-dark);line-height:1.75;white-space:pre-wrap;font-weight:300}
+.out-hl4{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--slate-dark);padding:18px}
+
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s}
+.fade-up.visible{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.12s}[data-d="2"]{transition-delay:.24s}[data-d="3"]{transition-delay:.36s}
+
+@media(max-width:768px){
+  nav{padding:14px 20px}.nav-r a:not(.nav-cta){display:none}
+  .hero{grid-template-columns:1fr;padding:110px 24px 60px;gap:40px}
+  .doc-visual{display:none}
+  .section{padding:60px 24px}.doc-types{grid-template-columns:1fr}
+  .price-row{grid-template-columns:1fr}.ptc.feat{transform:none}
+  .stats-strip{gap:36px;padding:28px 24px}
+  .gen-wrap{padding:24px}.form-grid{grid-template-columns:1fr}.form-full{grid-column:1}
+}
+</style>
+
+<script>
+  window.CH_SITE = {
+    name: 'rentscribe content generation',
+    price: '$19',
+    color: '#155E63',
+    checkoutUrl: 'https://crossholdinggroup.lemonsqueezy.com/checkout/buy/RENTSCRIBE_PRODUCT_ID'
+  };
+</script>
+<script src="/shared.js"></script>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo" onclick="showPage('home');return false">Rent<span>scribe</span></a>
+  <div class="nav-r">
+    <a href="#docs">Documents</a><a href="#pricing">Pricing</a>
+    <a href="#" class="nav-cta" onclick="showPage('gen');return false">Generate free →</a>
+  </div>
+</nav>
+
+<div id="page-home" class="page active">
+<div class="hero">
+  <div class="fade-up">
+    <div class="hero-badge">🔐 For landlords & property managers</div>
+    <h1>Property documents<br>without the<br><em>paralegal bill.</em></h1>
+    <p>Rentscribe generates lease agreements, eviction notices, move-in letters, and tenant communications — legally sound, professionally written, in under a minute.</p>
+    <button class="btn-teal" onclick="showPage('gen')">Generate my document →</button>
+    <div class="hero-disclaimer">⚠️ Not legal advice. Always review with your attorney for state-specific requirements.</div>
+  </div>
+  <div class="fade-up" style="transition-delay:.12s">
+    <div class="doc-visual">
+      <div class="dv-header">
+        <div class="dv-icon">📄</div>
+        <div>
+          <div class="dv-title">Residential Lease Agreement</div>
+          <div class="dv-sub">Rentscribe · State-aware template</div>
+        </div>
+      </div>
+      <div class="dv-body">
+        <div class="dv-section">
+          <div class="dv-sec-title">§1 — Parties & property</div>
+          <div class="dv-line"></div><div class="dv-line med"></div><div class="dv-line short"></div>
+        </div>
+        <div class="dv-section">
+          <div class="dv-sec-title">§2 — Lease terms & rent</div>
+          <div class="dv-pills">
+            <span class="dv-pill">12-month term</span>
+            <span class="dv-pill">$1,850/mo</span>
+            <span class="dv-pill">Due 1st</span>
+          </div>
+        </div>
+        <div class="dv-section">
+          <div class="dv-sec-title">§3 — Security deposit</div>
+          <div class="dv-line"></div><div class="dv-line short"></div>
+        </div>
+        <div class="dv-section">
+          <div class="dv-sec-title">§4 — Rules & responsibilities</div>
+          <div class="dv-line"></div><div class="dv-line med"></div>
+        </div>
+        <div class="dv-badge">✓ Ready to customize & send</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-strip">
+  <div><div class="sstat-n">$400</div><div class="sstat-l">Avg paralegal cost saved</div></div>
+  <div><div class="sstat-n">48M+</div><div class="sstat-l">Rental units in the US</div></div>
+  <div><div class="sstat-n">< 60s</div><div class="sstat-l">Per document</div></div>
+</div>
+
+<section class="section" id="docs">
+  <span class="sec-label">Document types</span>
+  <h2>Every document<br>landlords <em>dread writing.</em></h2>
+  <p class="sub">From move-in to move-out, Rentscribe handles the paperwork so you can handle the property.</p>
+  <div class="doc-types fade-up">
+    <div class="dt-card"><div class="dt-icon">📋</div><h3>Lease agreement</h3><p>Full residential lease with terms, rules, deposit policy, maintenance responsibilities, and signatures.</p><span class="dt-saves">Saves: $300–500 paralegal fee</span></div>
+    <div class="dt-card fade-up" data-d="1"><div class="dt-icon">📬</div><h3>Move-in letter</h3><p>Professional welcome letter with key dates, payment instructions, move-in inspection process, and house rules.</p><span class="dt-saves">Saves: Hours of writing</span></div>
+    <div class="dt-card fade-up" data-d="2"><div class="dt-icon">⚠️</div><h3>Late rent notice</h3><p>Professionally worded late payment notices with grace periods, fees, and escalation language.</p><span class="dt-saves">Saves: Awkward conversations</span></div>
+    <div class="dt-card fade-up"><div class="dt-icon">🚪</div><h3>Eviction / lease violation</h3><p>Cure or quit notices, lease violation warnings, and non-renewal letters with proper legal framing.</p><span class="dt-saves">Saves: $500+ attorney letter</span></div>
+    <div class="dt-card fade-up" data-d="1"><div class="dt-icon">🔧</div><h3>Maintenance notice</h3><p>Entry notices, maintenance scheduling letters, and repair completion confirmations for tenant files.</p><span class="dt-saves">Saves: CYA documentation</span></div>
+    <div class="dt-card fade-up" data-d="2"><div class="dt-icon">💰</div><h3>Security deposit letter</h3><p>Itemized deposit return letters with deduction breakdowns that meet most state notice requirements.</p><span class="dt-saves">Saves: Dispute liability</span></div>
+  </div>
+</section>
+
+<div class="bg-white">
+<section class="section" id="pricing">
+  <span class="sec-label">Pricing</span>
+  <h2>One document pays<br>for <em>six months.</em></h2>
+  <p class="sub">A paralegal charges $400 for a lease. Rentscribe costs $19/month and generates unlimited documents.</p>
+  <div class="price-row">
+    <div class="ptc fade-up">
+      <div class="ptc-tier">Individual</div>
+      <div class="ptc-amt"><sup>$</sup>19</div>
+      <div class="ptc-per">per month · 1–3 units</div>
+      <div class="ptc-div"></div>
+      <ul class="ptc-feats"><li>10 documents/month</li><li>Lease agreements</li><li>Move-in letters</li><li>Late payment notices</li></ul>
+      <button class="btn-ot" onclick="showPage('gen')">Get started</button>
+    </div>
+    <div class="ptc feat fade-up" data-d="1">
+      <div class="ptc-badge">Best value</div>
+      <div class="ptc-tier">Landlord</div>
+      <div class="ptc-amt"><sup>$</sup>35</div>
+      <div class="ptc-per">per month · up to 20 units</div>
+      <div class="ptc-div"></div>
+      <ul class="ptc-feats"><li>Unlimited documents</li><li>All document types</li><li>State-specific language</li><li>Tenant communication templates</li><li>Priority support</li></ul>
+      <button class="btn-wt" onclick="showPage('gen')">Get started</button>
+    </div>
+    <div class="ptc fade-up" data-d="2">
+      <div class="ptc-tier">Portfolio</div>
+      <div class="ptc-amt"><sup>$</sup>49</div>
+      <div class="ptc-per">per month · unlimited units</div>
+      <div class="ptc-div"></div>
+      <ul class="ptc-feats"><li>Everything in Landlord</li><li>3 team/staff seats</li><li>Bulk generation</li><li>Document history</li></ul>
+      <button class="btn-ot" onclick="showPage('gen')">Get started</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer style="background:var(--slate-dark);padding:40px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+  <a href="#" class="logo" onclick="showPage('home');return false" style="color:var(--off-white)">Rent<span style="color:var(--teal3)">scribe</span></a>
+  <div style="display:flex;gap:24px"><a href="#" style="font-size:13px;color:var(--mist);text-decoration:none">Privacy</a><a href="#" style="font-size:13px;color:var(--mist);text-decoration:none">Terms</a><a href="index.html" style="font-size:13px;color:var(--mist);text-decoration:none">Cross Holding Group</a></div>
+  <small style="font-size:12px;color:rgba(139,160,176,.3)">© 2026 Rentscribe · Cross Holding Group LLC</small>
+</footer>
+</div>
+
+<!-- GENERATOR -->
+<div id="page-gen" class="page">
+<div style="background:var(--off-white);min-height:100vh;padding-top:90px">
+<div class="gen-wrap">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="gen-head">
+    <h1>Generate my <em>document</em></h1>
+    <p>Fill in the property and tenant details. Your professional document will be ready in seconds.</p>
+  </div>
+  <div class="disclaimer-box">⚠️ For informational purposes only — not legal advice. Review all documents with a licensed attorney.</div>
+
+  <div class="gen-card" id="form-card">
+    <div class="form-grid">
+      <div class="sec-lbl4">Document type</div>
+      <div class="form-group form-full">
+        <label>Document to generate *</label>
+        <select class="fs4" id="doc-type">
+          <option value="">Select document...</option>
+          <option>Residential lease agreement</option>
+          <option>Month-to-month rental agreement</option>
+          <option>Lease renewal letter</option>
+          <option>Move-in welcome letter</option>
+          <option>Late rent notice (1st notice)</option>
+          <option>Late rent notice (final / pay or quit)</option>
+          <option>Lease violation warning</option>
+          <option>Eviction notice (cure or quit)</option>
+          <option>Non-renewal / lease termination notice</option>
+          <option>Maintenance entry notice</option>
+          <option>Security deposit return letter</option>
+        </select>
+      </div>
+      <div class="sec-lbl4">Property & parties</div>
+      <div class="form-group form-full">
+        <label>Property address *</label>
+        <input class="fi4" id="address" type="text" placeholder="e.g. 482 Maple Street, Apt 2B, Columbus, OH 43201">
+      </div>
+      <div class="form-group">
+        <label>Landlord / owner name *</label>
+        <input class="fi4" id="landlord" type="text" placeholder="e.g. John Smith / Smith Properties LLC">
+      </div>
+      <div class="form-group">
+        <label>Tenant name(s) *</label>
+        <input class="fi4" id="tenant" type="text" placeholder="e.g. Maria Gonzalez & Carlos Gonzalez">
+      </div>
+      <div class="sec-lbl4">Lease terms</div>
+      <div class="form-group">
+        <label>Monthly rent</label>
+        <input class="fi4" id="rent" type="text" placeholder="e.g. $1,850/month">
+      </div>
+      <div class="form-group">
+        <label>Security deposit</label>
+        <input class="fi4" id="deposit" type="text" placeholder="e.g. $1,850 (one month)">
+      </div>
+      <div class="form-group">
+        <label>Lease start date</label>
+        <input class="fi4" id="start-date" type="text" placeholder="e.g. June 1, 2026">
+      </div>
+      <div class="form-group">
+        <label>Lease end date</label>
+        <input class="fi4" id="end-date" type="text" placeholder="e.g. May 31, 2027">
+      </div>
+      <div class="form-group">
+        <label>Rent due date</label>
+        <select class="fs4" id="due-date">
+          <option>1st of the month</option><option>15th of the month</option><option>Last day of month</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Late fee</label>
+        <input class="fi4" id="late-fee" type="text" placeholder="e.g. $75 after 5-day grace period">
+      </div>
+      <div class="sec-lbl4">Rules & specifics</div>
+      <div class="form-group">
+        <label>Pets allowed?</label>
+        <select class="fs4" id="pets">
+          <option>No pets allowed</option><option>Cats only</option><option>Dogs under 25 lbs</option>
+          <option>All pets with $250 deposit</option><option>Case by case</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Utilities included</label>
+        <input class="fi4" id="utilities" type="text" placeholder="e.g. Water/trash included, tenant pays electric/gas">
+      </div>
+      <div class="form-group form-full">
+        <label>Additional rules or clauses</label>
+        <textarea class="ft4" id="extra-rules" placeholder="e.g. No smoking anywhere on property. Quiet hours 10pm–8am. Tenant responsible for lawn care. Renter's insurance required..." style="min-height:60px"></textarea>
+      </div>
+    </div>
+    <button class="gen-btn4" id="gen-btn" onclick="generateDoc()">Generate my document →</button>
+  </div>
+
+  <div class="loading-wrap" id="loading-wrap">
+    <div class="spinner"></div>
+    <div class="load-title">Drafting your document...</div>
+    <div class="load-sub">Applying proper legal structure and language</div>
+  </div>
+
+  <div class="results-wrap" id="results-wrap">
+    <div class="res-hdr">
+      <h3>Document <em>ready.</em></h3>
+      <div class="res-acts">
+        <button class="btn-ca4" id="copy-all-btn" onclick="copyAll()">Copy all</button>
+        <button class="btn-ed4" onclick="resetForm()">← Edit</button>
+      </div>
+    </div>
+    <div class="out-secs4" id="out-secs"></div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');window.scrollTo(0,0);if(id==='home')setTimeout(initFade,50)}
+function initFade(){const o=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.08});document.querySelectorAll('.fade-up').forEach(el=>o.observe(el))}
+initFade();
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function decode(s){return s.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&')}
+
+async function generateDoc(){
+  const docType=document.getElementById('doc-type').value;
+  const address=document.getElementById('address').value.trim();
+  const landlord=document.getElementById('landlord').value.trim();
+  const tenant=document.getElementById('tenant').value.trim();
+  if(!docType){alert('Please select a document type.');return}
+  if(!address){alert('Please enter the property address.');return}
+  if(!landlord){alert('Please enter the landlord name.');return}
+  if(!tenant){alert('Please enter the tenant name.');return}
+
+  document.getElementById('form-card').style.display='none';
+  document.getElementById('loading-wrap').classList.add('show');
+
+  const prompt=`You are an expert property management document writer. Generate a complete, professional ${docType} for the following rental situation. Return ONLY a valid JSON object with these exact keys (no markdown, no extra text):
+
+{
+  "document_title": "Full document title",
+  "header_info": "Document header with parties, property, and date information",
+  "main_body": "Complete main body with all numbered sections (§1, §2, etc.) fully written out",
+  "special_provisions": "Any additional provisions, rules, or special clauses",
+  "signature_block": "Complete signature block for all parties with date lines"
+}
+
+Property details:
+- Document type: ${docType}
+- Property: ${address}
+- Landlord/Owner: ${landlord}
+- Tenant(s): ${tenant}
+- Monthly rent: ${document.getElementById('rent').value||'As agreed'}
+- Security deposit: ${document.getElementById('deposit').value||'As agreed'}
+- Lease start: ${document.getElementById('start-date').value||'[START DATE]'}
+- Lease end: ${document.getElementById('end-date').value||'[END DATE]'}
+- Rent due: ${document.getElementById('due-date').value}
+- Late fee: ${document.getElementById('late-fee').value||'Per state law'}
+- Pets: ${document.getElementById('pets').value}
+- Utilities: ${document.getElementById('utilities').value||'Per negotiation'}
+${document.getElementById('extra-rules').value?'- Additional rules: '+document.getElementById('extra-rules').value:''}
+
+Write in formal, clear legal language. Include [DATE] placeholders where appropriate. Be thorough and protect the landlord's interests while remaining fair. Include a disclaimer at the end that this should be reviewed by a licensed attorney.`;
+
+  try{
+    const raw=await window.CHGenerate({prompt,maxTokens:1500,onError:(msg)=>{throw new Error(msg)}});if(!raw)return;
+    let parsed;
+    try{parsed=JSON.parse(raw.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim())}
+    catch{throw new Error('Parse error. Please try again.')}
+    document.getElementById('loading-wrap').classList.remove('show');
+    renderResults(parsed);
+  }catch(err){
+    document.getElementById('loading-wrap').classList.remove('show');
+    document.getElementById('form-card').style.display='block';
+    alert('Error: '+err.message);
+  }
+}
+
+function renderResults(data){
+  const secs=[
+    {icon:'📄',title:'Document title',key:'document_title',highlight:true},
+    {icon:'👥',title:'Parties & header',key:'header_info'},
+    {icon:'📋',title:'Main body',key:'main_body'},
+    {icon:'⚖️',title:'Special provisions',key:'special_provisions'},
+    {icon:'✍️',title:'Signature block',key:'signature_block'}
+  ];
+  const container=document.getElementById('out-secs');
+  container.innerHTML='';
+  let allText='';
+  secs.forEach(sec=>{
+    if(!data[sec.key])return;
+    const val=data[sec.key];
+    allText+=sec.title.toUpperCase()+'\n'+val+'\n\n---\n\n';
+    const div=document.createElement('div');div.className='out-sec4';
+    if(sec.highlight){div.innerHTML=`<div class="out-sec4-h"><div class="out-sec4-t"><span>${sec.icon}</span>${sec.title}</div><button class="out-sec4-cp" onclick="cpSec(this,'${esc(val)}')">Copy</button></div><div class="out-hl4">${esc(val)}</div>`}
+    else{div.innerHTML=`<div class="out-sec4-h"><div class="out-sec4-t"><span>${sec.icon}</span>${sec.title}</div><button class="out-sec4-cp" onclick="cpSec(this,'${esc(val)}')">Copy</button></div><div class="out-sec4-body">${esc(val)}</div>`}
+    container.appendChild(div);
+  });
+  window._allText=allText;
+  document.getElementById('results-wrap').classList.add('show');
+  document.getElementById('results-wrap').scrollIntoView({behavior:'smooth'});
+}
+function cpSec(btn,text){navigator.clipboard.writeText(decode(text)).then(()=>{btn.textContent='Copied ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000)})}
+function copyAll(){if(!window._allText)return;navigator.clipboard.writeText(window._allText).then(()=>{const b=document.getElementById('copy-all-btn');b.textContent='Copied ✓';b.classList.add('copied');setTimeout(()=>{b.textContent='Copy all';b.classList.remove('copied')},2500)})}
+function resetForm(){document.getElementById('form-card').style.display='block';document.getElementById('results-wrap').classList.remove('show');document.getElementById('form-card').scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>

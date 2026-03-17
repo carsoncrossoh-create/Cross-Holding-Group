@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shopscribe — Product Copy That Converts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --coral:#E85D3A;--coral2:#F07255;--coral-pale:#FDF0EC;
+  --mint:#2D8C6E;--mint-pale:#E8F5F1;
+  --sand:#F7F2EB;--sand2:#EEE7DB;--sand3:#E3D9CC;
+  --ink:#1F1512;--warm:#7A6560;--white:#FDFAF7;
+  --serif:'Fraunces',Georgia,serif;--sans:'Plus Jakarta Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--sand);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;
+  justify-content:space-between;padding:16px 48px;
+  background:rgba(247,242,235,.93);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(31,21,18,.08)}
+.logo{font-family:var(--serif);font-size:22px;color:var(--ink);text-decoration:none;font-weight:700}
+.logo span{color:var(--coral)}
+.nav-r{display:flex;gap:24px;align-items:center}
+.nav-r a{text-decoration:none;color:var(--warm);font-size:14px;font-weight:400;transition:color .2s}
+.nav-r a:hover{color:var(--ink)}
+.nav-cta{background:var(--coral)!important;color:#fff!important;padding:9px 22px;
+  border-radius:100px;font-weight:500!important;transition:all .2s!important}
+.nav-cta:hover{background:var(--coral2)!important;transform:translateY(-1px)}
+
+.page{display:none}.page.active{display:block}
+
+/* HERO */
+.hero{padding:130px 48px 80px;max-width:1200px;margin:0 auto}
+.hero-inner{display:grid;grid-template-columns:5fr 6fr;gap:72px;align-items:center}
+.hero-tag{display:inline-flex;align-items:center;gap:8px;background:var(--coral-pale);
+  border:1px solid rgba(232,93,58,.15);color:var(--coral);font-size:12px;font-weight:500;
+  padding:6px 14px;border-radius:100px;margin-bottom:26px}
+.hero h1{font-family:var(--serif);font-size:clamp(36px,4.5vw,58px);line-height:1.1;
+  font-weight:700;margin-bottom:20px;letter-spacing:-.5px}
+.hero h1 em{font-style:italic;color:var(--coral);font-weight:400}
+.hero p{font-size:16px;color:var(--warm);line-height:1.75;max-width:380px;font-weight:300;margin-bottom:32px}
+.btn-coral{background:var(--coral);color:#fff;padding:14px 28px;border-radius:100px;
+  font-family:var(--sans);font-size:15px;font-weight:500;border:none;cursor:pointer;
+  text-decoration:none;display:inline-block;transition:all .2s;
+  box-shadow:0 4px 20px rgba(232,93,58,.25)}
+.btn-coral:hover{background:var(--coral2);transform:translateY(-2px);box-shadow:0 8px 28px rgba(232,93,58,.3)}
+.hero-platforms{display:flex;align-items:center;gap:12px;margin-top:20px}
+.plat-label{font-size:12px;color:var(--warm);font-weight:300}
+.plat-badges{display:flex;gap:8px}
+.plat-badge{font-size:11px;padding:4px 12px;border-radius:100px;border:1px solid rgba(31,21,18,.12);color:var(--warm);font-weight:500}
+
+/* PRODUCT CARD VISUAL */
+.product-card{background:var(--white);border-radius:20px;overflow:hidden;
+  box-shadow:0 20px 60px rgba(31,21,18,.1);animation:bob 6s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.pc-img{height:200px;background:linear-gradient(135deg,var(--sand2) 0%,var(--sand3) 100%);
+  display:flex;align-items:center;justify-content:center;font-size:64px}
+.pc-body{padding:24px}
+.pc-shop{font-size:11px;font-weight:500;color:var(--coral);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.pc-title{font-family:var(--serif);font-size:18px;font-weight:700;color:var(--ink);margin-bottom:6px;line-height:1.3}
+.pc-price{font-size:15px;font-weight:500;color:var(--mint);margin-bottom:12px}
+.pc-desc{font-size:13px;color:var(--warm);line-height:1.65;font-weight:300}
+.pc-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}
+.pc-tag{font-size:11px;padding:4px 10px;border-radius:100px;background:var(--coral-pale);color:var(--coral);font-weight:500}
+.pc-tag.green{background:var(--mint-pale);color:var(--mint)}
+.pc-stars{color:#F59E0B;font-size:13px;margin-top:12px}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--sand2);
+  border-top:1px solid var(--sand2);border-bottom:1px solid var(--sand2)}
+.stat-cell{background:var(--sand);padding:28px 24px;text-align:center}
+.stat-n{font-family:var(--serif);font-size:36px;font-weight:700;color:var(--ink);font-style:italic;line-height:1}
+.stat-l{font-size:12px;color:var(--warm);margin-top:6px;font-weight:300}
+
+/* SECTIONS */
+.section{padding:88px 48px;max-width:1200px;margin:0 auto}
+.bg-white{background:var(--white)}
+.bg-mint{background:var(--mint)}
+.sec-eyebrow{font-family:var(--serif);font-size:12px;font-weight:700;font-style:italic;color:var(--coral);margin-bottom:14px;display:block}
+.section h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,46px);font-weight:700;line-height:1.1;margin-bottom:16px;letter-spacing:-.3px}
+.section h2 em{font-style:italic;color:var(--coral);font-weight:400}
+.section>.sub{font-size:16px;color:var(--warm);max-width:460px;font-weight:300;line-height:1.7;margin-bottom:52px}
+
+/* OUTPUTS */
+.outputs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.out-card{background:var(--sand);border-radius:16px;padding:28px;border:1px solid transparent;transition:all .2s}
+.out-card:hover{border-color:var(--coral);background:var(--white);transform:translateY(-3px);box-shadow:0 12px 32px rgba(232,93,58,.1)}
+.oc-icon{width:48px;height:48px;border-radius:12px;background:var(--coral-pale);display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:18px}
+.out-card h3{font-family:var(--serif);font-size:18px;font-weight:700;margin-bottom:8px;color:var(--ink)}
+.out-card p{font-size:13px;color:var(--warm);line-height:1.6;font-weight:300}
+
+/* PRICING */
+.price-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:52px}
+.p3c{background:var(--white);border-radius:16px;padding:32px;border:1px solid rgba(31,21,18,.07);position:relative;transition:all .2s}
+.p3c:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(31,21,18,.08)}
+.p3c.feat{background:var(--coral);border-color:var(--coral);transform:scale(1.03)}
+.p3c.feat:hover{transform:scale(1.03) translateY(-3px)}
+.p3c-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);
+  background:var(--ink);color:var(--sand);font-size:10px;font-weight:500;padding:4px 12px;
+  border-radius:100px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.p3c-tier{font-size:12px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--coral);margin-bottom:10px}
+.p3c.feat .p3c-tier{color:rgba(255,255,255,.7)}
+.p3c-amt{font-family:var(--serif);font-size:48px;font-weight:700;color:var(--ink);line-height:1;margin-bottom:4px;font-style:italic}
+.p3c.feat .p3c-amt{color:#fff}
+.p3c-amt sup{font-size:20px;vertical-align:super;font-style:normal}
+.p3c-per{font-size:13px;color:var(--warm);margin-bottom:20px;font-weight:300}
+.p3c.feat .p3c-per{color:rgba(255,255,255,.6)}
+.p3c-div{height:1px;background:rgba(31,21,18,.06);margin:20px 0}
+.p3c.feat .p3c-div{background:rgba(255,255,255,.15)}
+.p3c-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.p3c-feats li{font-size:13px;color:var(--warm);display:flex;align-items:center;gap:8px;font-weight:300}
+.p3c.feat .p3c-feats li{color:rgba(255,255,255,.75)}
+.p3c-feats li::before{content:'✦';color:var(--coral);font-size:10px;flex-shrink:0}
+.p3c.feat .p3c-feats li::before{color:rgba(255,255,255,.5)}
+.btn-c{width:100%;padding:12px;border-radius:100px;background:var(--coral);color:#fff;
+  font-family:var(--sans);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
+.btn-c:hover{background:var(--coral2)}
+.btn-oc{width:100%;padding:12px;border-radius:100px;border:1.5px solid rgba(31,21,18,.1);
+  color:var(--ink);font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;background:transparent;transition:all .2s}
+.btn-oc:hover{border-color:var(--coral);color:var(--coral)}
+.btn-wh{width:100%;padding:12px;border-radius:100px;background:#fff;color:var(--coral);
+  font-family:var(--sans);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
+.btn-wh:hover{background:var(--coral-pale)}
+
+/* GENERATOR */
+#page-gen{background:var(--sand);padding-top:90px}
+.gen-wrap{max-width:840px;margin:0 auto;padding:48px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:none;
+  color:var(--warm);font-family:var(--sans);font-size:14px;cursor:pointer;margin-bottom:28px;padding:0;transition:color .2s}
+.back-btn:hover{color:var(--ink)}
+.gen-head{text-align:center;margin-bottom:48px}
+.gen-head h1{font-family:var(--serif);font-size:clamp(28px,4vw,46px);font-weight:700;font-style:italic;line-height:1.1;margin-bottom:12px;color:var(--ink)}
+.gen-head h1 em{color:var(--coral);font-style:normal}
+.gen-head p{font-size:15px;color:var(--warm);font-weight:300;max-width:380px;margin:0 auto}
+
+.gen-card{background:var(--white);border-radius:20px;padding:40px;border:1px solid rgba(31,21,18,.06);box-shadow:0 4px 28px rgba(31,21,18,.06)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-full{grid-column:1/-1}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:12px;font-weight:500;color:var(--ink)}
+.fi3,.fs3,.ft3{width:100%;padding:11px 14px;border-radius:10px;border:1.5px solid rgba(31,21,18,.1);
+  background:var(--sand);font-family:var(--sans);font-size:14px;color:var(--ink);outline:none;transition:border-color .2s}
+.fi3:focus,.fs3:focus,.ft3:focus{border-color:var(--coral);background:var(--white)}
+.fs3{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A6560' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;background-color:var(--sand);cursor:pointer}
+.fs3:focus{background-color:var(--white)}
+.ft3{resize:vertical;min-height:80px;line-height:1.5}
+.sec-lbl3{font-family:var(--serif);font-size:11px;font-style:italic;color:var(--coral);grid-column:1/-1;margin-top:8px}
+.gen-btn3{width:100%;padding:15px;border-radius:100px;background:var(--coral);color:#fff;
+  font-family:var(--sans);font-size:15px;font-weight:500;border:none;cursor:pointer;
+  margin-top:28px;transition:all .2s;box-shadow:0 4px 20px rgba(232,93,58,.3)}
+.gen-btn3:hover:not(:disabled){background:var(--coral2);transform:translateY(-1px)}
+.gen-btn3:disabled{opacity:.6;cursor:not-allowed}
+
+.loading-wrap{display:none;text-align:center;padding:52px}
+.loading-wrap.show{display:block}
+.spinner{width:36px;height:36px;border:2px solid var(--sand2);border-top-color:var(--coral);
+  border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-title{font-family:var(--serif);font-size:22px;font-style:italic;color:var(--ink);margin-bottom:8px}
+.load-sub{font-size:14px;color:var(--warm);font-weight:300}
+
+.results-wrap{display:none}.results-wrap.show{display:block}
+.res-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.res-hdr h3{font-family:var(--serif);font-size:24px;font-weight:700;font-style:italic;color:var(--ink)}
+.res-acts{display:flex;gap:10px}
+.btn-ca3{padding:9px 18px;border-radius:100px;background:var(--coral);color:#fff;
+  font-family:var(--sans);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
+.btn-ca3.copied{background:var(--mint)}
+.btn-ed3{padding:9px 18px;border-radius:100px;border:1.5px solid rgba(31,21,18,.1);
+  color:var(--warm);font-family:var(--sans);font-size:13px;cursor:pointer;background:transparent;transition:all .2s}
+.btn-ed3:hover{border-color:var(--ink);color:var(--ink)}
+.out-secs3{display:flex;flex-direction:column;gap:12px}
+.out-sec3{border:1.5px solid rgba(31,21,18,.07);border-radius:12px;overflow:hidden;background:var(--white)}
+.out-sec3-h{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--sand)}
+.out-sec3-t{font-size:12px;font-weight:500;color:var(--ink);display:flex;align-items:center;gap:8px}
+.out-sec3-cp{font-size:12px;color:var(--warm);background:none;border:1px solid rgba(31,21,18,.1);
+  padding:4px 10px;border-radius:100px;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.out-sec3-cp:hover{border-color:var(--coral);color:var(--coral)}
+.out-sec3-cp.copied{border-color:var(--mint);color:var(--mint)}
+.out-sec3-body{padding:18px;font-size:14px;color:var(--ink);line-height:1.75;white-space:pre-wrap;font-weight:300}
+.out-hl3{font-family:var(--serif);font-size:19px;font-weight:700;font-style:italic;color:var(--ink);padding:18px}
+
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s}
+.fade-up.visible{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.12s}[data-d="2"]{transition-delay:.24s}
+
+@media(max-width:768px){
+  nav{padding:14px 20px}.nav-r a:not(.nav-cta){display:none}
+  .hero{padding:110px 24px 60px}.hero-inner{grid-template-columns:1fr;gap:40px}
+  .stats-row{grid-template-columns:1fr 1fr}.section{padding:60px 24px}
+  .outputs-grid{grid-template-columns:1fr}.price-3{grid-template-columns:1fr}.p3c.feat{transform:none}
+  .gen-wrap{padding:24px}.form-grid{grid-template-columns:1fr}.form-full{grid-column:1}
+}
+</style>
+
+<script>
+  window.CH_SITE = {
+    name: 'shopscribe content generation',
+    price: '$12',
+    color: '#E85D3A',
+    checkoutUrl: 'https://crossholdinggroup.lemonsqueezy.com/checkout/buy/SHOPSCRIBE_PRODUCT_ID'
+  };
+</script>
+<script src="/shared.js"></script>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo" onclick="showPage('home');return false">Shop<span>scribe</span></a>
+  <div class="nav-r">
+    <a href="#outputs">What we write</a><a href="#pricing">Pricing</a>
+    <a href="#" class="nav-cta" onclick="showPage('gen');return false">Write free →</a>
+  </div>
+</nav>
+
+<div id="page-home" class="page active">
+<div class="hero">
+  <div class="hero-inner">
+    <div class="fade-up">
+      <div class="hero-tag">✦ For Etsy & Shopify sellers</div>
+      <h1>Listings that<br>sell while<br>you <em>sleep.</em></h1>
+      <p>Shopscribe writes SEO-optimized product descriptions, titles, and shop copy for marketplace sellers who'd rather be making than writing.</p>
+      <button class="btn-coral" onclick="showPage('gen')">Write my product free →</button>
+      <div class="hero-platforms">
+        <span class="plat-label">Works for</span>
+        <div class="plat-badges">
+          <span class="plat-badge">Etsy</span>
+          <span class="plat-badge">Shopify</span>
+          <span class="plat-badge">Amazon</span>
+          <span class="plat-badge">eBay</span>
+        </div>
+      </div>
+    </div>
+    <div class="fade-up" style="transition-delay:.15s">
+      <div class="product-card">
+        <div class="pc-img">🕯️</div>
+        <div class="pc-body">
+          <div class="pc-shop">✦ Shopscribe optimized</div>
+          <div class="pc-title">Hand-Poured Soy Candle · Cedarwood & Black Fig · 8oz</div>
+          <div class="pc-price">$28.00</div>
+          <div class="pc-desc">Some scents just belong to a moment. This hand-poured soy blend opens with sharp cedarwood and settles into the warm, jammy sweetness of black fig — perfect for slow Sunday mornings or winding down after a long week. Burns clean for 45+ hours with a wood wick that crackles like a tiny fireplace...</div>
+          <div class="pc-tags">
+            <span class="pc-tag">soy candle</span>
+            <span class="pc-tag">cedarwood</span>
+            <span class="pc-tag green">clean burn</span>
+            <span class="pc-tag green">handmade</span>
+          </div>
+          <div class="pc-stars">★★★★★ <span style="font-size:12px;color:var(--warm);font-family:var(--sans)">(847 sales)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-cell"><div class="stat-n">9M+</div><div class="stat-l">Etsy sellers we could serve</div></div>
+  <div class="stat-cell"><div class="stat-n">40%</div><div class="stat-l">Avg conversion lift</div></div>
+  <div class="stat-cell"><div class="stat-n">60s</div><div class="stat-l">Per product written</div></div>
+  <div class="stat-cell"><div class="stat-n">$0</div><div class="stat-l">Copywriter fees</div></div>
+</div>
+
+<section class="section" id="outputs">
+  <span class="sec-eyebrow">Everything we write</span>
+  <h2>Copy that earns<br>its <em>keep.</em></h2>
+  <p class="sub">Every word is written to rank in search, earn clicks, and convert browsers into buyers.</p>
+  <div class="outputs-grid">
+    <div class="out-card fade-up"><div class="oc-icon">🏷️</div><h3>SEO product title</h3><p>Keyword-rich titles that rank in Etsy and Google search while still reading naturally to buyers.</p></div>
+    <div class="out-card fade-up" data-d="1"><div class="oc-icon">📝</div><h3>Product description</h3><p>Sensory, story-driven descriptions that create desire and answer buyer objections before they're asked.</p></div>
+    <div class="out-card fade-up" data-d="2"><div class="oc-icon">🏪</div><h3>Shop bio</h3><p>Your brand story and seller intro that builds trust and gives buyers a reason to choose you.</p></div>
+    <div class="out-card fade-up"><div class="oc-icon">🔖</div><h3>SEO tags & keywords</h3><p>13 Etsy-optimized tags per product plus long-tail keyword suggestions for better search ranking.</p></div>
+    <div class="out-card fade-up" data-d="1"><div class="oc-icon">📱</div><h3>Social media captions</h3><p>Instagram and Pinterest captions with hooks and hashtags to drive traffic from social to your shop.</p></div>
+    <div class="out-card fade-up" data-d="2"><div class="oc-icon">📦</div><h3>Packaging insert copy</h3><p>Thank-you card text, care instructions, and review request messages that delight customers.</p></div>
+  </div>
+</section>
+
+<div class="bg-white">
+<section class="section" id="pricing">
+  <span class="sec-eyebrow">Pricing</span>
+  <h2>Cheaper than one<br>hour of <em>procrastinating.</em></h2>
+  <p class="sub">Sellers average 45 minutes writing one product listing. Shopscribe does it in 60 seconds for less than a cup of coffee a day.</p>
+  <div class="price-3">
+    <div class="p3c fade-up">
+      <div class="p3c-tier">Hobbyist</div>
+      <div class="p3c-amt"><sup>$</sup>12</div>
+      <div class="p3c-per">per month</div>
+      <div class="p3c-div"></div>
+      <ul class="p3c-feats"><li>10 products/month</li><li>Title + description</li><li>SEO tags</li><li>Shop bio</li></ul>
+      <button class="btn-oc" onclick="showPage('gen')">Get started</button>
+    </div>
+    <div class="p3c feat fade-up" data-d="1">
+      <div class="p3c-badge">Most popular</div>
+      <div class="p3c-tier">Seller</div>
+      <div class="p3c-amt"><sup>$</sup>22</div>
+      <div class="p3c-per">per month</div>
+      <div class="p3c-div"></div>
+      <ul class="p3c-feats"><li>Unlimited products</li><li>Everything in Hobbyist</li><li>Social captions</li><li>Packaging insert copy</li><li>Bulk generation</li></ul>
+      <button class="btn-wh" onclick="showPage('gen')">Get started</button>
+    </div>
+    <div class="p3c fade-up" data-d="2">
+      <div class="p3c-tier">Power seller</div>
+      <div class="p3c-amt"><sup>$</sup>29</div>
+      <div class="p3c-per">per month</div>
+      <div class="p3c-div"></div>
+      <ul class="p3c-feats"><li>Everything in Seller</li><li>Multi-platform (Etsy + Shopify)</li><li>Seasonal refresh tool</li><li>Priority support</li></ul>
+      <button class="btn-oc" onclick="showPage('gen')">Get started</button>
+    </div>
+  </div>
+</section>
+</div>
+
+<footer style="background:var(--ink);padding:40px 48px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+  <a href="#" class="logo" onclick="showPage('home');return false" style="color:var(--sand)">Shop<span style="color:var(--coral)">scribe</span></a>
+  <div style="display:flex;gap:24px"><a href="#" style="font-size:13px;color:var(--warm);text-decoration:none">Privacy</a><a href="#" style="font-size:13px;color:var(--warm);text-decoration:none">Terms</a><a href="index.html" style="font-size:13px;color:var(--warm);text-decoration:none">Cross Holding Group</a></div>
+  <small style="font-size:12px;color:rgba(122,101,96,.4)">© 2026 Shopscribe · Cross Holding Group LLC</small>
+</footer>
+</div>
+
+<!-- GENERATOR -->
+<div id="page-gen" class="page">
+<div style="background:var(--sand);min-height:100vh;padding-top:90px">
+<div class="gen-wrap">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="gen-head">
+    <h1>Write my <em>product</em></h1>
+    <p>Describe your product and we'll write copy that converts — in under 30 seconds.</p>
+  </div>
+
+  <div class="gen-card" id="form-card">
+    <div class="form-grid">
+      <div class="sec-lbl3">Product basics</div>
+      <div class="form-group form-full">
+        <label>Product name *</label>
+        <input class="fi3" id="prod-name" type="text" placeholder="e.g. Hand-Poured Soy Candle — Cedarwood & Black Fig">
+      </div>
+      <div class="form-group">
+        <label>Platform *</label>
+        <select class="fs3" id="platform">
+          <option value="">Select...</option>
+          <option>Etsy</option><option>Shopify</option>
+          <option>Amazon Handmade</option><option>eBay</option><option>General / multiple</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Product category</label>
+        <select class="fs3" id="category">
+          <option>Handmade / crafts</option><option>Home decor</option>
+          <option>Jewelry & accessories</option><option>Clothing & apparel</option>
+          <option>Beauty & skincare</option><option>Food & gourmet</option>
+          <option>Art & prints</option><option>Vintage</option>
+          <option>Digital downloads</option><option>Stationery & paper</option>
+          <option>Toys & games</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Price</label>
+        <input class="fi3" id="price" type="text" placeholder="e.g. $28.00">
+      </div>
+      <div class="form-group">
+        <label>Materials / ingredients</label>
+        <input class="fi3" id="materials" type="text" placeholder="e.g. 100% soy wax, cotton wick, fragrance oils">
+      </div>
+      <div class="sec-lbl3">Product details</div>
+      <div class="form-group form-full">
+        <label>Key features & selling points *</label>
+        <textarea class="ft3" id="features" placeholder="e.g. Hand-poured in small batches, wood wick that crackles, 45+ hour burn time, cedarwood and black fig scent, available in 4oz and 8oz..."></textarea>
+      </div>
+      <div class="form-group form-full">
+        <label>Who is this for? (target customer)</label>
+        <textarea class="ft3" id="audience" placeholder="e.g. People who love cozy home vibes, gift buyers, self-care enthusiasts, people who love earthy/woodsy scents..." style="min-height:60px"></textarea>
+      </div>
+      <div class="sec-lbl3">Tone & style</div>
+      <div class="form-group">
+        <label>Brand tone</label>
+        <select class="fs3" id="tone">
+          <option>Warm & storytelling</option><option>Clean & minimal</option>
+          <option>Playful & fun</option><option>Luxury & elevated</option>
+          <option>Earthy & natural</option><option>Bold & confident</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Content to generate</label>
+        <select class="fs3" id="content">
+          <option>Full package (title + description + tags + social)</option>
+          <option>Title + description + tags only</option>
+          <option>Description only</option>
+          <option>Social captions + hashtags</option>
+        </select>
+      </div>
+    </div>
+    <button class="gen-btn3" id="gen-btn" onclick="generateProduct()">✦ Write my product copy</button>
+  </div>
+
+  <div class="loading-wrap" id="loading-wrap">
+    <div class="spinner"></div>
+    <div class="load-title">Writing your copy...</div>
+    <div class="load-sub">Crafting words that sell</div>
+  </div>
+
+  <div class="results-wrap" id="results-wrap">
+    <div class="res-hdr">
+      <h3>Your copy is ready.</h3>
+      <div class="res-acts">
+        <button class="btn-ca3" id="copy-all-btn" onclick="copyAll()">Copy all</button>
+        <button class="btn-ed3" onclick="resetForm()">← Edit</button>
+      </div>
+    </div>
+    <div class="out-secs3" id="out-secs"></div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');window.scrollTo(0,0);if(id==='home')setTimeout(initFade,50)}
+function initFade(){const o=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.08});document.querySelectorAll('.fade-up').forEach(el=>o.observe(el))}
+initFade();
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function decode(s){return s.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&')}
+
+async function generateProduct(){
+  const name=document.getElementById('prod-name').value.trim();
+  const platform=document.getElementById('platform').value;
+  const features=document.getElementById('features').value.trim();
+  if(!name){alert('Please enter your product name.');return}
+  if(!platform){alert('Please select a platform.');return}
+  if(!features){alert('Please describe your product features.');return}
+
+  document.getElementById('form-card').style.display='none';
+  document.getElementById('loading-wrap').classList.add('show');
+
+  const prompt=`You are an expert ecommerce copywriter who writes product listings that rank in search and convert browsers to buyers. Generate compelling product copy for the following item. Return ONLY a valid JSON object with these exact keys (no markdown, no extra text):
+
+{
+  "seo_title": "SEO-optimized product title for ${document.getElementById('platform').value} (keyword-rich, naturally readable, max 80 chars)",
+  "description": "Full product description (3-4 paragraphs, sensory and story-driven, answers buyer questions, creates desire)",
+  "bullet_points": "5 key feature bullet points (use • as bullet, each starting with a strong benefit)",
+  "seo_tags": "13 comma-separated search tags optimized for ${document.getElementById('platform').value} search",
+  "social_caption": "Instagram caption with hooks, emojis, and relevant hashtags (20+ hashtags)"
+}
+
+Product details:
+- Product name: ${name}
+- Platform: ${platform}
+- Category: ${document.getElementById('category').value}
+- Price: ${document.getElementById('price').value||'Not specified'}
+- Materials: ${document.getElementById('materials').value||'Not specified'}
+- Key features: ${features}
+- Target customer: ${document.getElementById('audience').value||'General shoppers'}
+- Brand tone: ${document.getElementById('tone').value}
+- Content requested: ${document.getElementById('content').value}
+
+Be specific and sensory. Avoid generic phrases. Lead with the strongest benefit. Write as if you're describing it to a friend who'd love it.`;
+
+  try{
+    const raw=await window.CHGenerate({prompt,maxTokens:1500,onError:(msg)=>{throw new Error(msg)}});if(!raw)return;
+    let parsed;
+    try{parsed=JSON.parse(raw.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim())}
+    catch{throw new Error('Parse error. Please try again.')}
+    document.getElementById('loading-wrap').classList.remove('show');
+    renderResults(parsed);
+  }catch(err){
+    document.getElementById('loading-wrap').classList.remove('show');
+    document.getElementById('form-card').style.display='block';
+    alert('Error: '+err.message);
+  }
+}
+
+function renderResults(data){
+  const secs=[
+    {icon:'🏷️',title:'SEO title',key:'seo_title',highlight:true},
+    {icon:'📝',title:'Product description',key:'description'},
+    {icon:'✦',title:'Feature bullet points',key:'bullet_points'},
+    {icon:'🔖',title:'SEO tags',key:'seo_tags'},
+    {icon:'📱',title:'Social caption + hashtags',key:'social_caption'}
+  ];
+  const container=document.getElementById('out-secs');
+  container.innerHTML='';
+  let allText='';
+  secs.forEach(sec=>{
+    if(!data[sec.key])return;
+    const val=data[sec.key];
+    allText+=sec.title.toUpperCase()+'\n'+val+'\n\n---\n\n';
+    const div=document.createElement('div');div.className='out-sec3';
+    if(sec.highlight){div.innerHTML=`<div class="out-sec3-h"><div class="out-sec3-t"><span>${sec.icon}</span>${sec.title}</div><button class="out-sec3-cp" onclick="cpSec(this,'${esc(val)}')">Copy</button></div><div class="out-hl3">${esc(val)}</div>`}
+    else{div.innerHTML=`<div class="out-sec3-h"><div class="out-sec3-t"><span>${sec.icon}</span>${sec.title}</div><button class="out-sec3-cp" onclick="cpSec(this,'${esc(val)}')">Copy</button></div><div class="out-sec3-body">${esc(val)}</div>`}
+    container.appendChild(div);
+  });
+  window._allText=allText;
+  document.getElementById('results-wrap').classList.add('show');
+  document.getElementById('results-wrap').scrollIntoView({behavior:'smooth'});
+}
+function cpSec(btn,text){navigator.clipboard.writeText(decode(text)).then(()=>{btn.textContent='Copied ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000)})}
+function copyAll(){if(!window._allText)return;navigator.clipboard.writeText(window._allText).then(()=>{const b=document.getElementById('copy-all-btn');b.textContent='Copied ✓';b.classList.add('copied');setTimeout(()=>{b.textContent='Copy all';b.classList.remove('copied')},2500)})}
+function resetForm(){document.getElementById('form-card').style.display='block';document.getElementById('results-wrap').classList.remove('show');document.getElementById('form-card').scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>

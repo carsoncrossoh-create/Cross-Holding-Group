@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deskjoy — HR Docs Without the Dread</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --slate:#1E2A3A;--slate2:#253245;--slate3:#2D3D52;
+  --sky:#4DA8DA;--sky2:#6DBFE8;--sky-pale:#EBF6FC;
+  --mint:#3DBD8A;--mint-pale:#E8F8F2;
+  --sand:#F5F3EE;--sand2:#EBE8E0;--white:#FAFAF8;
+  --mid:#7A8A99;--serif:'Crimson Pro',Georgia,serif;--sans:'DM Sans',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--sand);color:var(--slate);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;
+  justify-content:space-between;padding:16px 52px;
+  background:rgba(245,243,238,.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(30,42,58,.08)}
+.logo{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--slate);text-decoration:none}
+.logo span{color:var(--sky)}
+.nav-r{display:flex;gap:28px;align-items:center}
+.nav-r a{text-decoration:none;color:var(--mid);font-size:14px;font-weight:400;transition:color .2s}
+.nav-r a:hover{color:var(--slate)}
+.nav-cta{background:var(--slate)!important;color:var(--sky-pale)!important;padding:9px 22px;border-radius:6px;font-weight:500!important;transition:all .2s!important}
+.nav-cta:hover{background:var(--slate2)!important;transform:translateY(-1px)}
+
+.page{display:none}.page.active{display:block}
+
+/* HERO */
+.hero{min-height:100vh;padding:120px 52px 80px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--sky-pale);border:1px solid rgba(77,168,218,.15);color:var(--sky);font-size:12px;font-weight:500;padding:6px 14px;border-radius:6px;margin-bottom:24px}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,4.5vw,58px);line-height:1.1;margin-bottom:20px;font-weight:600}
+.hero h1 em{font-style:italic;color:var(--sky)}
+.hero p{font-size:17px;color:var(--mid);line-height:1.8;max-width:400px;font-weight:300;margin-bottom:32px}
+.btn-slate{background:var(--slate);color:#fff;padding:14px 28px;border-radius:6px;font-family:var(--sans);font-size:14px;font-weight:500;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;box-shadow:0 4px 16px rgba(30,42,58,.15)}
+.btn-slate:hover{background:var(--slate2);transform:translateY(-1px);box-shadow:0 8px 24px rgba(30,42,58,.2)}
+.hero-note{font-size:13px;color:var(--mid);margin-top:14px;font-weight:300}
+
+/* REVIEW CARD VISUAL */
+.review-card{background:var(--white);border-radius:16px;padding:28px;border:1px solid rgba(30,42,58,.07);box-shadow:0 16px 48px rgba(30,42,58,.08);animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.rc-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--sand2)}
+.rc-employee{display:flex;align-items:center;gap:12px}
+.rc-avatar{width:40px;height:40px;border-radius:50%;background:var(--sky-pale);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:18px;font-weight:600;color:var(--sky)}
+.rc-name{font-weight:500;color:var(--slate);font-size:15px}
+.rc-role{font-size:12px;color:var(--mid);font-weight:300}
+.rc-period{font-size:12px;color:var(--mid);background:var(--sand);padding:4px 10px;border-radius:4px}
+.rc-rating{display:flex;gap:12px;margin-bottom:16px}
+.rc-rate-item{flex:1;background:var(--sand);border-radius:8px;padding:12px;text-align:center}
+.rc-rate-score{font-family:var(--serif);font-size:22px;font-weight:600;color:var(--slate)}
+.rc-rate-label{font-size:11px;color:var(--mid);font-weight:300;margin-top:3px}
+.rc-section{margin-bottom:14px}
+.rc-sec-title{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--sky);margin-bottom:8px}
+.rc-line{height:7px;border-radius:3px;background:var(--sand);margin-bottom:6px}
+.rc-line.short{width:65%}.rc-line.med{width:80%}
+.rc-badge{display:inline-flex;align-items:center;gap:6px;background:var(--mint-pale);color:var(--mint);font-size:12px;font-weight:500;padding:5px 12px;border-radius:4px;margin-top:8px}
+
+/* STATS */
+.stats-row{background:var(--slate);padding:28px 52px;display:flex;justify-content:center;gap:64px;flex-wrap:wrap}
+.sr-n{font-family:var(--serif);font-size:32px;font-weight:600;color:var(--sky);margin-bottom:4px;font-style:italic}
+.sr-l{font-size:12px;color:rgba(255,255,255,.4);letter-spacing:.05em}
+
+/* SECTIONS */
+.section{padding:88px 52px;max-width:1200px;margin:0 auto}
+.bg-white{background:var(--white)}
+.sec-tag{font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--sky);margin-bottom:14px;display:block}
+.section h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);line-height:1.1;margin-bottom:16px;font-weight:600}
+.section h2 em{font-style:italic;color:var(--sky)}
+.section>.sub{font-size:16px;color:var(--mid);max-width:460px;font-weight:300;line-height:1.75;margin-bottom:52px}
+
+/* WHAT WE WRITE */
+.write-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.wc{background:var(--white);border:1px solid rgba(30,42,58,.07);border-radius:12px;padding:28px;transition:all .2s}
+.wc:hover{border-color:var(--sky);transform:translateY(-3px);box-shadow:0 10px 28px rgba(77,168,218,.08)}
+.wc-icon{font-size:26px;margin-bottom:16px;display:block}
+.wc h3{font-family:var(--serif);font-size:18px;font-weight:600;margin-bottom:8px;color:var(--slate)}
+.wc p{font-size:13px;color:var(--mid);line-height:1.6;font-weight:300}
+.wc .saves{font-size:12px;color:var(--sky);font-weight:500;margin-top:10px;display:block}
+
+/* PRICING */
+.price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.pc{background:var(--white);border-radius:12px;padding:32px;border:1px solid rgba(30,42,58,.07);position:relative;transition:all .2s}
+.pc:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(30,42,58,.07)}
+.pc.feat{background:var(--slate);border-color:var(--slate);transform:scale(1.03)}
+.pc.feat:hover{transform:scale(1.03) translateY(-3px)}
+.pc-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--sky);color:#fff;font-size:10px;font-weight:500;padding:4px 12px;border-radius:3px;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.pc-tier{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sky);margin-bottom:10px}
+.pc.feat .pc-tier{color:rgba(77,168,218,.6)}
+.pc-amt{font-family:var(--serif);font-size:48px;font-weight:600;color:var(--slate);line-height:1;margin-bottom:4px;font-style:italic}
+.pc.feat .pc-amt{color:#fff}
+.pc-amt sup{font-size:20px;vertical-align:super;font-style:normal}
+.pc-per{font-size:13px;color:var(--mid);margin-bottom:20px;font-weight:300}
+.pc.feat .pc-per{color:rgba(255,255,255,.35)}
+.pc-div{height:1px;background:rgba(30,42,58,.06);margin:20px 0}
+.pc.feat .pc-div{background:rgba(255,255,255,.08)}
+.pc-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.pc-feats li{font-size:13px;color:var(--mid);display:flex;align-items:center;gap:8px;font-weight:300}
+.pc.feat .pc-feats li{color:rgba(255,255,255,.55)}
+.pc-feats li::before{content:'✓';color:var(--sky);font-size:11px;flex-shrink:0;font-weight:700}
+.btn-s{width:100%;padding:12px;border-radius:6px;background:var(--slate);color:#fff;font-family:var(--sans);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
+.btn-s:hover{background:var(--slate2)}
+.btn-os{width:100%;padding:12px;border-radius:6px;border:1px solid rgba(30,42,58,.1);color:var(--slate);font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;background:transparent;transition:all .2s}
+.btn-os:hover{border-color:var(--slate)}
+.btn-sky{width:100%;padding:12px;border-radius:6px;background:var(--sky);color:#fff;font-family:var(--sans);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
+.btn-sky:hover{background:var(--sky2)}
+
+/* GENERATOR */
+#page-gen{background:var(--sand);padding-top:90px}
+.gen-wrap{max-width:840px;margin:0 auto;padding:48px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--mid);font-family:var(--sans);font-size:14px;cursor:pointer;margin-bottom:28px;padding:0;transition:color .2s}
+.back-btn:hover{color:var(--slate)}
+.gen-head{text-align:center;margin-bottom:48px}
+.gen-head h1{font-family:var(--serif);font-size:clamp(28px,4vw,46px);font-weight:600;line-height:1.1;margin-bottom:12px;color:var(--slate)}
+.gen-head h1 em{font-style:italic;color:var(--sky)}
+.gen-head p{font-size:15px;color:var(--mid);font-weight:300;max-width:380px;margin:0 auto}
+.gen-card{background:var(--white);border-radius:12px;padding:40px;border:1px solid rgba(30,42,58,.07);box-shadow:0 4px 20px rgba(30,42,58,.05)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-full{grid-column:1/-1}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:12px;font-weight:500;color:var(--slate);letter-spacing:.04em}
+.fi,.fs,.ft{width:100%;padding:11px 14px;border-radius:6px;border:1px solid rgba(30,42,58,.1);background:var(--sand);font-family:var(--sans);font-size:14px;color:var(--slate);outline:none;transition:border-color .2s}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--sky);background:var(--white)}
+.fs{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A8A99' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;background-color:var(--sand);cursor:pointer}
+.fs:focus{background-color:var(--white)}
+.ft{resize:vertical;min-height:80px;line-height:1.5}
+.sec-lbl{font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--sky);grid-column:1/-1;margin-top:8px;padding-top:12px;border-top:1px solid rgba(30,42,58,.06)}
+.gen-btn{width:100%;padding:14px;border-radius:6px;background:var(--slate);color:#fff;font-family:var(--sans);font-size:15px;font-weight:500;border:none;cursor:pointer;margin-top:28px;transition:all .2s;box-shadow:0 4px 16px rgba(30,42,58,.15)}
+.gen-btn:hover:not(:disabled){background:var(--slate2);transform:translateY(-1px)}
+.gen-btn:disabled{opacity:.5;cursor:not-allowed}
+.loading-wrap{display:none;text-align:center;padding:52px}.loading-wrap.show{display:block}
+.spinner{width:36px;height:36px;border:2px solid var(--sand2);border-top-color:var(--sky);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-title{font-family:var(--serif);font-size:22px;font-style:italic;color:var(--slate);margin-bottom:8px}
+.load-sub{font-size:14px;color:var(--mid);font-weight:300}
+.results-wrap{display:none}.results-wrap.show{display:block}
+.res-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.res-hdr h3{font-family:var(--serif);font-size:26px;font-style:italic;font-weight:600;color:var(--slate)}
+.res-acts{display:flex;gap:10px}
+.btn-ca{padding:9px 18px;border-radius:6px;background:var(--slate);color:#fff;font-family:var(--sans);font-size:13px;font-weight:500;border:none;cursor:pointer;transition:all .2s}
+.btn-ca.copied{background:var(--mint)}
+.btn-ed{padding:9px 18px;border-radius:6px;border:1px solid rgba(30,42,58,.1);color:var(--mid);font-family:var(--sans);font-size:13px;cursor:pointer;background:transparent;transition:all .2s}
+.btn-ed:hover{border-color:var(--slate);color:var(--slate)}
+.out-secs{display:flex;flex-direction:column;gap:12px}
+.out-sec{border:1px solid rgba(30,42,58,.07);border-radius:8px;overflow:hidden;background:var(--white)}
+.out-sec-h{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--sky-pale)}
+.out-sec-t{font-size:12px;font-weight:500;color:var(--slate);display:flex;align-items:center;gap:8px;letter-spacing:.04em}
+.out-sec-cp{font-size:12px;color:var(--mid);background:none;border:1px solid rgba(30,42,58,.1);padding:4px 10px;border-radius:4px;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.out-sec-cp:hover{border-color:var(--sky);color:var(--sky)}
+.out-sec-cp.copied{border-color:var(--mint);color:var(--mint)}
+.out-sec-body{padding:18px;font-size:14px;color:var(--slate);line-height:1.75;white-space:pre-wrap;font-weight:300}
+.out-hl{font-family:var(--serif);font-size:20px;font-style:italic;font-weight:600;color:var(--slate);padding:18px}
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s}
+.fade-up.visible{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.12s}[data-d="2"]{transition-delay:.24s}
+@media(max-width:768px){nav{padding:14px 20px}.nav-r a:not(.nav-cta){display:none}.hero{grid-template-columns:1fr;padding:110px 24px 60px;gap:40px}.section{padding:60px 24px}.write-grid{grid-template-columns:1fr}.price-row{grid-template-columns:1fr}.pc.feat{transform:none}.gen-wrap{padding:24px}.form-grid{grid-template-columns:1fr}.form-full{grid-column:1}.stats-row{gap:32px;padding:24px}}
+</style>
+
+<script>
+  window.CH_SITE = {
+    name: 'deskjoy content generation',
+    price: '$12',
+    color: '#4DA8DA',
+    checkoutUrl: 'https://crossholdinggroup.lemonsqueezy.com/checkout/buy/DESKJOY_PRODUCT_ID'
+  };
+</script>
+<script src="/shared.js"></script>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo" onclick="showPage('home');return false">Desk<span>joy</span></a>
+  <div class="nav-r">
+    <a href="#writes">Features</a><a href="#pricing">Pricing</a>
+    <a href="#" class="nav-cta" onclick="showPage('gen');return false">Generate free →</a>
+  </div>
+</nav>
+
+<div id="page-home" class="page active">
+<div class="hero">
+  <div class="fade-up">
+    <div class="hero-badge">🗂 For managers & HR teams</div>
+    <h1>HR documents<br>without the<br><em>Sunday dread.</em></h1>
+    <p>Deskjoy writes performance reviews, feedback templates, job descriptions, and workplace communications — so managers spend time leading, not writing.</p>
+    <button class="btn-slate" onclick="showPage('gen')">Generate my doc free →</button>
+    <p class="hero-note">Free first generation · No credit card needed</p>
+  </div>
+  <div class="fade-up" style="transition-delay:.15s">
+    <div class="review-card">
+      <div class="rc-header">
+        <div class="rc-employee">
+          <div class="rc-avatar">J</div>
+          <div><div class="rc-name">Jordan Mills</div><div class="rc-role">Senior Engineer · Q1 2026</div></div>
+        </div>
+        <span class="rc-period">Annual Review</span>
+      </div>
+      <div class="rc-rating">
+        <div class="rc-rate-item"><div class="rc-rate-score">4.2</div><div class="rc-rate-label">Performance</div></div>
+        <div class="rc-rate-item"><div class="rc-rate-score">4.5</div><div class="rc-rate-label">Collaboration</div></div>
+        <div class="rc-rate-item"><div class="rc-rate-score">3.8</div><div class="rc-rate-label">Growth</div></div>
+      </div>
+      <div class="rc-section">
+        <div class="rc-sec-title">Strengths</div>
+        <div class="rc-line"></div><div class="rc-line med"></div><div class="rc-line short"></div>
+      </div>
+      <div class="rc-section">
+        <div class="rc-sec-title">Development areas</div>
+        <div class="rc-line"></div><div class="rc-line med"></div>
+      </div>
+      <div class="rc-badge">✓ Ready for HR system</div>
+    </div>
+  </div>
+</div>
+
+<div class="stats-row">
+  <div><div class="sr-n">7,200+</div><div class="sr-l">Documents generated</div></div>
+  <div><div class="sr-n">3hrs</div><div class="sr-l">Avg saved per review cycle</div></div>
+  <div><div class="sr-n">$200/hr</div><div class="sr-l">HR consultant cost replaced</div></div>
+</div>
+
+<section class="section" id="writes">
+  <span class="sec-tag">✦ What we generate</span>
+  <h2>Every HR doc<br>managers <em>dread writing.</em></h2>
+  <p class="sub">Consistent, fair, legally sound HR documents — written in minutes, not hours.</p>
+  <div class="write-grid">
+    <div class="wc fade-up"><span class="wc-icon">📊</span><h3>Performance review</h3><p>Balanced, specific reviews covering strengths, development areas, and goals for any role or level.</p><span class="saves">Saves: 2–3 hrs per review</span></div>
+    <div class="wc fade-up" data-d="1"><span class="wc-icon">💬</span><h3>Feedback message</h3><p>Constructive feedback for 1:1s, peer reviews, and difficult conversations — clear and fair.</p><span class="saves">Saves: Awkward conversations</span></div>
+    <div class="wc fade-up" data-d="2"><span class="wc-icon">📋</span><h3>Job description</h3><p>Inclusive, accurate job descriptions that attract the right candidates and reduce mismatched hires.</p><span class="saves">Saves: $300 recruiter copywriting</span></div>
+    <div class="wc fade-up"><span class="wc-icon">🤝</span><h3>Offer letter</h3><p>Professional offer letters with compensation, start date, and key terms — ready to send.</p><span class="saves">Saves: $150 HR template fees</span></div>
+    <div class="wc fade-up" data-d="1"><span class="wc-icon">📅</span><h3>PIP / improvement plan</h3><p>Performance improvement plans that are fair, specific, and legally defensible.</p><span class="saves">Saves: $500+ employment lawyer</span></div>
+    <div class="wc fade-up" data-d="2"><span class="wc-icon">👋</span><h3>Onboarding checklist</h3><p>Custom 30/60/90-day onboarding plans and welcome messages for new hires by role.</p><span class="saves">Saves: Hours of planning</span></div>
+  </div>
+</section>
+
+<div class="bg-white">
+<section class="section" id="pricing">
+  <span class="sec-tag">✦ Pricing</span>
+  <h2>Less than one hour<br>of your <em>own time.</em></h2>
+  <p class="sub">The average manager spends 3+ hours per performance review. Deskjoy does it in 2 minutes.</p>
+  <div class="price-row">
+    <div class="pc fade-up"><div class="pc-tier">Manager</div><div class="pc-amt"><sup>$</sup>12</div><div class="pc-per">per month</div><div class="pc-div"></div><ul class="pc-feats"><li>10 documents/month</li><li>Performance reviews</li><li>Feedback messages</li><li>Job descriptions</li></ul><button class="btn-os" onclick="showPage('gen')">Get started</button></div>
+    <div class="pc feat fade-up" data-d="1"><div class="pc-badge">Most popular</div><div class="pc-tier">Team lead</div><div class="pc-amt"><sup>$</sup>22</div><div class="pc-per">per month</div><div class="pc-div"></div><ul class="pc-feats"><li>Unlimited documents</li><li>All content types</li><li>PIP templates</li><li>Offer letters</li><li>Onboarding plans</li></ul><button class="btn-sky" onclick="showPage('gen')">Get started</button></div>
+    <div class="pc fade-up" data-d="2"><div class="pc-tier">HR / People team</div><div class="pc-amt"><sup>$</sup>45</div><div class="pc-per">per month</div><div class="pc-div"></div><ul class="pc-feats"><li>Everything included</li><li>5 team seats</li><li>Company style guide</li><li>API access</li></ul><button class="btn-os" onclick="showPage('gen')">Get started</button></div>
+  </div>
+</section>
+</div>
+
+<footer style="background:var(--slate);padding:40px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+  <a href="#" class="logo" onclick="showPage('home');return false" style="color:#fff">Desk<span style="color:var(--sky)">joy</span></a>
+  <div style="display:flex;gap:24px"><a href="#" style="font-size:13px;color:var(--mid);text-decoration:none">Privacy</a><a href="#" style="font-size:13px;color:var(--mid);text-decoration:none">Terms</a><a href="index.html" style="font-size:13px;color:var(--mid);text-decoration:none">Cross Holding Group</a></div>
+  <small style="font-size:12px;color:rgba(122,138,153,.3)">© 2026 Deskjoy · Cross Holding Group LLC</small>
+</footer>
+</div>
+
+<!-- GENERATOR -->
+<div id="page-gen" class="page">
+<div style="background:var(--sand);min-height:100vh;padding-top:90px">
+<div class="gen-wrap">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="gen-head"><h1>Generate my <em>document</em></h1><p>Fill in the employee and context details. Your HR doc will be ready in seconds.</p></div>
+  <div class="gen-card" id="form-card">
+    <div class="form-grid">
+      <div class="sec-lbl">Document type</div>
+      <div class="form-group form-full"><label>What to generate *</label>
+        <select class="fs" id="content-type">
+          <option value="">Select...</option>
+          <option>Annual performance review</option><option>Mid-year performance review</option>
+          <option>360 feedback summary</option><option>Peer feedback message</option>
+          <option>Constructive feedback (1:1)</option><option>Job description</option>
+          <option>Offer letter</option><option>Performance improvement plan (PIP)</option>
+          <option>30/60/90 day onboarding plan</option><option>New hire welcome message</option>
+          <option>Warning letter</option><option>Promotion announcement</option>
+        </select>
+      </div>
+      <div class="sec-lbl">Employee details</div>
+      <div class="form-group"><label>Employee name</label>
+        <input class="fi" id="employee-name" type="text" placeholder="e.g. Jordan Mills">
+      </div>
+      <div class="form-group"><label>Job title / role *</label>
+        <input class="fi" id="role" type="text" placeholder="e.g. Senior Software Engineer">
+      </div>
+      <div class="form-group"><label>Department / team</label>
+        <input class="fi" id="department" type="text" placeholder="e.g. Engineering / Product">
+      </div>
+      <div class="form-group"><label>Review period / start date</label>
+        <input class="fi" id="period" type="text" placeholder="e.g. Q1 2026 / January 6, 2026">
+      </div>
+      <div class="form-group"><label>Manager name</label>
+        <input class="fi" id="manager" type="text" placeholder="e.g. Sarah Chen">
+      </div>
+      <div class="form-group"><label>Experience level</label>
+        <select class="fs" id="level">
+          <option>Junior / entry level</option><option>Mid-level</option>
+          <option>Senior</option><option>Lead / principal</option><option>Manager / director</option>
+        </select>
+      </div>
+      <div class="sec-lbl">Performance context</div>
+      <div class="form-group form-full"><label>Key achievements & strengths *</label>
+        <textarea class="ft" id="strengths" placeholder="e.g. Led migration of payment service, reduced latency by 40%. Great collaborator, mentors junior devs. Strong technical communication..."></textarea>
+      </div>
+      <div class="form-group form-full"><label>Areas for development / concerns</label>
+        <textarea class="ft" id="improvements" placeholder="e.g. Needs to improve project estimation accuracy. Sometimes misses documentation. Could be more proactive with cross-team communication..." style="min-height:60px"></textarea>
+      </div>
+      <div class="form-group form-full"><label>Goals for next period</label>
+        <textarea class="ft" id="goals" placeholder="e.g. Lead one major architectural decision, complete system design course, improve sprint velocity by 15%..." style="min-height:60px"></textarea>
+      </div>
+      <div class="form-group"><label>Overall performance rating</label>
+        <select class="fs" id="rating">
+          <option>Exceeds expectations</option><option>Meets expectations</option>
+          <option>Needs improvement</option><option>Does not meet expectations</option>
+          <option>Outstanding / exceptional</option><option>No rating (omit)</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Tone</label>
+        <select class="fs" id="tone">
+          <option>Balanced and professional</option><option>Encouraging and positive</option>
+          <option>Direct and constructive</option><option>Formal / corporate</option>
+        </select>
+      </div>
+    </div>
+    <button class="gen-btn" id="gen-btn" onclick="generateDoc()">Generate my document →</button>
+  </div>
+  <div class="loading-wrap" id="loading-wrap"><div class="spinner"></div><div class="load-title">Writing your document...</div><div class="load-sub">Creating fair, specific, actionable HR content</div></div>
+  <div class="results-wrap" id="results-wrap">
+    <div class="res-hdr"><h3>Document ready.</h3><div class="res-acts"><button class="btn-ca" id="copy-all-btn" onclick="copyAll()">Copy all</button><button class="btn-ed" onclick="resetForm()">← Edit</button></div></div>
+    <div class="out-secs" id="out-secs"></div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');window.scrollTo(0,0);if(id==='home')setTimeout(initFade,50)}
+function initFade(){const o=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.08});document.querySelectorAll('.fade-up').forEach(el=>o.observe(el))}
+initFade();
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function decode(s){return s.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&')}
+async function generateDoc(){
+  const ct=document.getElementById('content-type').value;
+  const role=document.getElementById('role').value.trim();
+  const strengths=document.getElementById('strengths').value.trim();
+  if(!ct){alert('Please select document type.');return}
+  if(!role){alert('Please enter the job title.');return}
+  if(!strengths){alert('Please describe key achievements and strengths.');return}
+  document.getElementById('form-card').style.display='none';
+  document.getElementById('loading-wrap').classList.add('show');
+  const prompt=`You are an expert HR professional and organizational psychologist. Generate a ${ct} for the following employee. Return ONLY a valid JSON object with these exact keys (no markdown, no extra text):
+{"document_title":"Full document title with employee name and period","summary":"Executive summary or opening paragraph (2-3 sentences)","main_content":"Complete main body with all sections — strengths, development areas, examples, goals — formatted with clear headers","goals_and_next_steps":"Specific, measurable goals for the next review period with success criteria","closing":"Professional closing paragraph or recommendation","notes_for_manager":"2-3 private tips for the manager on how to deliver this feedback effectively"}
+Details:
+- Document: ${ct}
+- Employee: ${document.getElementById('employee-name').value||'Employee'}
+- Role: ${role}
+- Department: ${document.getElementById('department').value||'Not specified'}
+- Period: ${document.getElementById('period').value||'Current period'}
+- Manager: ${document.getElementById('manager').value||'Manager'}
+- Level: ${document.getElementById('level').value}
+- Achievements/strengths: ${strengths}
+- Development areas: ${document.getElementById('improvements').value||'None specified'}
+- Goals: ${document.getElementById('goals').value||'To be determined'}
+- Rating: ${document.getElementById('rating').value}
+- Tone: ${document.getElementById('tone').value}
+Write in clear, professional language. Be specific with examples. Avoid vague corporate language. Make feedback actionable and fair. Include a note that this is a draft to be reviewed by manager before sharing.`;
+  try{
+    const raw=await window.CHGenerate({prompt,maxTokens:1500,onError:(msg)=>{throw new Error(msg)}});if(!raw)return;
+    let parsed;try{parsed=JSON.parse(raw.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim())}catch{throw new Error('Parse error. Try again.')}
+    document.getElementById('loading-wrap').classList.remove('show');
+    renderResults(parsed);
+  }catch(err){document.getElementById('loading-wrap').classList.remove('show');document.getElementById('form-card').style.display='block';alert('Error: '+err.message)}
+}
+function renderResults(data){
+  const secs=[{icon:'📋',title:'Document title',key:'document_title',highlight:true},{icon:'📝',title:'Summary',key:'summary'},{icon:'📊',title:'Full review',key:'main_content'},{icon:'🎯',title:'Goals & next steps',key:'goals_and_next_steps'},{icon:'✅',title:'Closing',key:'closing'},{icon:'💡',title:'Tips for delivering this feedback',key:'notes_for_manager'}];
+  const container=document.getElementById('out-secs');container.innerHTML='';let allText='';
+  secs.forEach(sec=>{if(!data[sec.key])return;const val=data[sec.key];allText+=sec.title.toUpperCase()+'\n'+val+'\n\n---\n\n';const div=document.createElement('div');div.className='out-sec';
+    if(sec.highlight){div.innerHTML=`<div class="out-sec-h"><div class="out-sec-t"><span>${sec.icon}</span>${sec.title}</div><button class="out-sec-cp" onclick="cpSec(this,'${esc(val)}')">Copy</button></div><div class="out-hl">${esc(val)}</div>`}
+    else{div.innerHTML=`<div class="out-sec-h"><div class="out-sec-t"><span>${sec.icon}</span>${sec.title}</div><button class="out-sec-cp" onclick="cpSec(this,'${esc(val)}')">Copy</button></div><div class="out-sec-body">${esc(val)}</div>`}
+    container.appendChild(div);});
+  window._allText=allText;document.getElementById('results-wrap').classList.add('show');document.getElementById('results-wrap').scrollIntoView({behavior:'smooth'});
+}
+function cpSec(btn,text){navigator.clipboard.writeText(decode(text)).then(()=>{btn.textContent='Copied ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000)})}
+function copyAll(){if(!window._allText)return;navigator.clipboard.writeText(window._allText).then(()=>{const b=document.getElementById('copy-all-btn');b.textContent='Copied ✓';b.classList.add('copied');setTimeout(()=>{b.textContent='Copy all';b.classList.remove('copied')},2500)})}
+function resetForm(){document.getElementById('form-card').style.display='block';document.getElementById('results-wrap').classList.remove('show');document.getElementById('form-card').scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>

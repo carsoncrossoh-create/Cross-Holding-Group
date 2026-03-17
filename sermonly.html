@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sermonly — Sermon Outlines & Church Copy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --plum:#3B2167;--plum2:#4A2980;--plum3:#5C3494;
+  --gold:#C9963A;--gold-light:#E0B25A;--gold-pale:#FDF6E8;
+  --lavender:#EEE8F8;--cream:#FAF8F5;--white:#FFFFFF;
+  --warm-gray:#7A7080;--ink:#1E1525;--border:#E0D8EE;
+  --serif:'EB Garamond',Georgia,serif;--sans:'Nunito',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);font-size:16px;line-height:1.6;overflow-x:hidden}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;
+  justify-content:space-between;padding:16px 52px;
+  background:rgba(250,248,245,.94);backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border)}
+.logo{font-family:var(--serif);font-size:22px;color:var(--plum);text-decoration:none;font-style:italic}
+.logo span{color:var(--gold);font-style:normal}
+.nav-r{display:flex;gap:28px;align-items:center}
+.nav-r a{text-decoration:none;color:var(--warm-gray);font-size:14px;transition:color .2s}
+.nav-r a:hover{color:var(--ink)}
+.nav-cta{background:var(--plum)!important;color:#fff!important;padding:9px 22px;border-radius:6px;font-weight:600!important;transition:all .2s!important}
+.nav-cta:hover{background:var(--plum2)!important;transform:translateY(-1px)}
+
+.page{display:none}.page.active{display:block}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding:120px 52px 80px;max-width:1200px;margin:0 auto;gap:80px;align-items:center}
+.hero-cross{font-size:28px;margin-bottom:20px;display:block;color:var(--gold)}
+.hero h1{font-family:var(--serif);font-size:clamp(38px,5vw,62px);line-height:1.08;color:var(--plum);margin-bottom:20px;font-weight:500}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero p{font-size:17px;color:var(--warm-gray);line-height:1.8;max-width:400px;font-weight:300;margin-bottom:32px}
+.btn-plum{background:var(--plum);color:#fff;padding:14px 30px;border-radius:6px;font-family:var(--sans);font-size:14px;font-weight:600;border:none;cursor:pointer;text-decoration:none;display:inline-block;transition:all .2s;box-shadow:0 4px 20px rgba(59,33,103,.2)}
+.btn-plum:hover{background:var(--plum2);transform:translateY(-1px);box-shadow:0 8px 28px rgba(59,33,103,.28)}
+.hero-note{font-size:13px;color:var(--warm-gray);margin-top:14px;font-weight:300}
+
+/* SERMON CARD VISUAL */
+.sermon-card{background:var(--white);border-radius:16px;padding:32px;border:1px solid var(--border);box-shadow:0 20px 56px rgba(59,33,103,.1);animation:float 6s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.sc-header{text-align:center;padding-bottom:20px;margin-bottom:20px;border-bottom:1px solid var(--border)}
+.sc-cross{color:var(--gold);font-size:20px;margin-bottom:8px;display:block}
+.sc-series{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px}
+.sc-title{font-family:var(--serif);font-size:22px;color:var(--plum);line-height:1.2;font-style:italic}
+.sc-verse{font-size:13px;color:var(--warm-gray);margin-top:6px;font-style:italic}
+.sc-points{display:flex;flex-direction:column;gap:12px;margin-top:16px}
+.sc-point{display:flex;align-items:flex-start;gap:12px}
+.sc-num{width:26px;height:26px;background:var(--lavender);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:var(--plum);flex-shrink:0;margin-top:2px}
+.sc-point-text{font-size:14px;color:var(--ink);line-height:1.5;font-weight:400}
+.sc-point-sub{font-size:12px;color:var(--warm-gray);margin-top:3px;font-weight:300;font-style:italic}
+
+/* PROOF */
+.proof-row{background:var(--plum);padding:28px 52px;display:flex;justify-content:center;gap:64px;flex-wrap:wrap}
+.pr-n{font-family:var(--serif);font-size:30px;color:var(--gold-light);font-style:italic;margin-bottom:4px}
+.pr-l{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:.06em}
+
+/* SECTIONS */
+.section{padding:88px 52px;max-width:1200px;margin:0 auto}
+.bg-lav{background:var(--lavender)}
+.sec-tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:14px;display:block}
+.section h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);line-height:1.1;color:var(--plum);margin-bottom:16px;font-weight:500}
+.section h2 em{font-style:italic;color:var(--gold)}
+.section>.sub{font-size:16px;color:var(--warm-gray);max-width:460px;font-weight:300;line-height:1.75;margin-bottom:52px}
+
+/* WHAT WE WRITE */
+.write-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:52px}
+.wc{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;transition:all .2s}
+.wc:hover{border-color:var(--plum);transform:translateY(-3px);box-shadow:0 10px 28px rgba(59,33,103,.08)}
+.wc-icon{font-size:28px;margin-bottom:16px;display:block}
+.wc h3{font-family:var(--serif);font-size:18px;color:var(--plum);margin-bottom:8px;font-weight:500}
+.wc p{font-size:13px;color:var(--warm-gray);line-height:1.6;font-weight:300}
+
+/* PRICING */
+.price-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px}
+.pc{background:var(--white);border-radius:12px;padding:32px;border:1px solid var(--border);position:relative;transition:all .2s}
+.pc:hover{transform:translateY(-3px);box-shadow:0 12px 36px rgba(59,33,103,.08)}
+.pc.feat{background:var(--plum);border-color:var(--plum);transform:scale(1.03)}
+.pc.feat:hover{transform:scale(1.03) translateY(-3px)}
+.pc-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--plum);font-size:10px;font-weight:700;padding:4px 12px;border-radius:100px;white-space:nowrap;font-family:var(--sans)}
+.pc-tier{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.pc.feat .pc-tier{color:var(--gold-light)}
+.pc-amt{font-family:var(--serif);font-size:48px;color:var(--plum);line-height:1;margin-bottom:4px;font-style:italic}
+.pc.feat .pc-amt{color:#fff}
+.pc-amt sup{font-size:20px;vertical-align:super;font-style:normal}
+.pc-per{font-size:13px;color:var(--warm-gray);margin-bottom:20px;font-weight:300}
+.pc.feat .pc-per{color:rgba(255,255,255,.5)}
+.pc-div{height:1px;background:var(--border);margin:20px 0}
+.pc.feat .pc-div{background:rgba(255,255,255,.12)}
+.pc-feats{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.pc-feats li{font-size:13px;color:var(--warm-gray);display:flex;align-items:center;gap:8px;font-weight:300}
+.pc.feat .pc-feats li{color:rgba(255,255,255,.65)}
+.pc-feats li::before{content:'✦';color:var(--gold);font-size:10px;flex-shrink:0}
+.btn-plum2{width:100%;padding:12px;border-radius:6px;background:var(--plum);color:#fff;font-family:var(--sans);font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
+.btn-plum2:hover{background:var(--plum2)}
+.btn-outline-p{width:100%;padding:12px;border-radius:6px;border:1.5px solid var(--border);color:var(--plum);font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;background:transparent;transition:all .2s}
+.btn-outline-p:hover{border-color:var(--plum)}
+.btn-gold2{width:100%;padding:12px;border-radius:6px;background:var(--gold);color:var(--plum);font-family:var(--sans);font-size:13px;font-weight:700;border:none;cursor:pointer;transition:all .2s}
+.btn-gold2:hover{background:var(--gold-light)}
+
+/* GENERATOR */
+#page-gen{background:var(--cream);padding-top:90px}
+.gen-wrap{max-width:840px;margin:0 auto;padding:48px}
+.back-btn{display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:var(--warm-gray);font-family:var(--sans);font-size:14px;cursor:pointer;margin-bottom:28px;padding:0;transition:color .2s}
+.back-btn:hover{color:var(--ink)}
+.gen-head{text-align:center;margin-bottom:48px}
+.gen-head h1{font-family:var(--serif);font-size:clamp(28px,4vw,46px);color:var(--plum);line-height:1.1;margin-bottom:12px;font-weight:500;font-style:italic}
+.gen-head p{font-size:15px;color:var(--warm-gray);font-weight:300;max-width:380px;margin:0 auto}
+.gen-card{background:var(--white);border-radius:16px;padding:40px;border:1px solid var(--border);box-shadow:0 4px 24px rgba(59,33,103,.06)}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-full{grid-column:1/-1}
+.form-group{display:flex;flex-direction:column;gap:5px}
+.form-group label{font-size:12px;font-weight:600;color:var(--plum);letter-spacing:.04em}
+.fi,.fs,.ft{width:100%;padding:11px 14px;border-radius:8px;border:1.5px solid var(--border);background:var(--cream);font-family:var(--sans);font-size:14px;color:var(--ink);outline:none;transition:border-color .2s}
+.fi:focus,.fs:focus,.ft:focus{border-color:var(--plum);background:var(--white)}
+.fs{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237A7080' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:32px;background-color:var(--cream);cursor:pointer}
+.fs:focus{background-color:var(--white)}
+.ft{resize:vertical;min-height:80px;line-height:1.5}
+.sec-lbl{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);grid-column:1/-1;margin-top:8px;padding-top:12px;border-top:1px solid var(--border)}
+.gen-btn{width:100%;padding:15px;border-radius:8px;background:var(--plum);color:#fff;font-family:var(--sans);font-size:15px;font-weight:600;border:none;cursor:pointer;margin-top:28px;transition:all .2s;box-shadow:0 4px 18px rgba(59,33,103,.22)}
+.gen-btn:hover:not(:disabled){background:var(--plum2);transform:translateY(-1px)}
+.gen-btn:disabled{opacity:.6;cursor:not-allowed}
+.loading-wrap{display:none;text-align:center;padding:52px}.loading-wrap.show{display:block}
+.spinner{width:36px;height:36px;border:2px solid var(--lavender);border-top-color:var(--plum);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 20px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.load-title{font-family:var(--serif);font-size:22px;font-style:italic;color:var(--plum);margin-bottom:8px}
+.load-sub{font-size:14px;color:var(--warm-gray);font-weight:300}
+.results-wrap{display:none}.results-wrap.show{display:block}
+.res-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px;flex-wrap:wrap;gap:12px}
+.res-hdr h3{font-family:var(--serif);font-size:26px;font-style:italic;color:var(--plum)}
+.res-acts{display:flex;gap:10px}
+.btn-ca{padding:9px 18px;border-radius:6px;background:var(--plum);color:#fff;font-family:var(--sans);font-size:13px;font-weight:600;border:none;cursor:pointer;transition:all .2s}
+.btn-ca.copied{background:var(--gold);color:var(--plum)}
+.btn-ed{padding:9px 18px;border-radius:6px;border:1.5px solid var(--border);color:var(--warm-gray);font-family:var(--sans);font-size:13px;cursor:pointer;background:transparent;transition:all .2s}
+.btn-ed:hover{border-color:var(--plum);color:var(--plum)}
+.out-secs{display:flex;flex-direction:column;gap:12px}
+.out-sec{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--white)}
+.out-sec-h{display:flex;align-items:center;justify-content:space-between;padding:12px 18px;background:var(--lavender)}
+.out-sec-t{font-size:12px;font-weight:600;color:var(--plum);display:flex;align-items:center;gap:8px;letter-spacing:.04em}
+.out-sec-cp{font-size:12px;color:var(--warm-gray);background:none;border:1px solid var(--border);padding:4px 10px;border-radius:5px;cursor:pointer;font-family:var(--sans);transition:all .2s}
+.out-sec-cp:hover{border-color:var(--plum);color:var(--plum)}
+.out-sec-cp.copied{border-color:var(--gold);color:var(--gold)}
+.out-sec-body{padding:18px;font-size:14px;color:var(--ink);line-height:1.75;white-space:pre-wrap;font-weight:300}
+.out-hl{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--plum);padding:18px}
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s}
+.fade-up.visible{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.12s}[data-d="2"]{transition-delay:.24s}
+@media(max-width:768px){nav{padding:14px 20px}.nav-r a:not(.nav-cta){display:none}.hero{grid-template-columns:1fr;padding:110px 24px 60px;gap:40px}.section{padding:60px 24px}.write-grid{grid-template-columns:1fr}.price-row{grid-template-columns:1fr}.pc.feat{transform:none}.gen-wrap{padding:24px}.form-grid{grid-template-columns:1fr}.form-full{grid-column:1}}
+</style>
+
+<script>
+  window.CH_SITE = {
+    name: 'sermonly content generation',
+    price: '$15',
+    color: '#3B2167',
+    checkoutUrl: 'https://crossholdinggroup.lemonsqueezy.com/checkout/buy/SERMONLY_PRODUCT_ID'
+  };
+</script>
+<script src="/shared.js"></script>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo" onclick="showPage('home');return false"><em>Serm</em><span>only</span></a>
+  <div class="nav-r">
+    <a href="#writes">What we write</a><a href="#pricing">Pricing</a>
+    <a href="#" class="nav-cta" onclick="showPage('gen');return false">Generate free →</a>
+  </div>
+</nav>
+
+<div id="page-home" class="page active">
+<div class="hero">
+  <div class="fade-up">
+    <span class="hero-cross">✝</span>
+    <h1>Your message,<br><em>beautifully</em><br>prepared.</h1>
+    <p>Sermonly writes sermon outlines, pastoral letters, bulletins, and church announcements — so you spend your time in the Word, not staring at a blank page.</p>
+    <button class="btn-plum" onclick="showPage('gen')">Generate my sermon outline →</button>
+    <p class="hero-note">Free first generation · No credit card needed</p>
+  </div>
+  <div class="fade-up" style="transition-delay:.15s">
+    <div class="sermon-card">
+      <div class="sc-header">
+        <span class="sc-cross">✝</span>
+        <div class="sc-series">Series: The Unshakeable Life</div>
+        <div class="sc-title">"When the Ground Shifts"</div>
+        <div class="sc-verse">Psalm 46:1–3 · Matthew 7:24–27</div>
+      </div>
+      <div class="sc-points">
+        <div class="sc-point"><div class="sc-num">1</div><div><div class="sc-point-text">God is our refuge before the storm, not just during it</div><div class="sc-point-sub">Application: Building daily trust, not just crisis faith</div></div></div>
+        <div class="sc-point"><div class="sc-num">2</div><div><div class="sc-point-text">The foundation determines what survives the shaking</div><div class="sc-point-sub">Illustration: The difference between a house and a home</div></div></div>
+        <div class="sc-point"><div class="sc-num">3</div><div><div class="sc-point-text">Stillness is a weapon, not a weakness</div><div class="sc-point-sub">Closing: "Be still and know that I am God"</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="proof-row">
+  <div><div class="pr-n">4,800+</div><div class="pr-l">Sermons outlined</div></div>
+  <div><div class="pr-n">3hrs</div><div class="pr-l">Avg prep time saved weekly</div></div>
+  <div><div class="pr-n">50+</div><div class="pr-l">Denominations using Sermonly</div></div>
+</div>
+
+<section class="section" id="writes">
+  <span class="sec-tag">✦ What we generate</span>
+  <h2>Every word your<br>ministry <em>needs written.</em></h2>
+  <p class="sub">From Sunday's outline to Wednesday's newsletter — written with theological care and pastoral warmth.</p>
+  <div class="write-grid">
+    <div class="wc fade-up"><span class="wc-icon">📖</span><h3>Sermon outline</h3><p>3-point outlines with scripture references, illustrations, applications, and a closing call to action.</p></div>
+    <div class="wc fade-up" data-d="1"><span class="wc-icon">✉️</span><h3>Pastoral letter</h3><p>Personal letters to the congregation for seasons of grief, celebration, transition, or encouragement.</p></div>
+    <div class="wc fade-up" data-d="2"><span class="wc-icon">📋</span><h3>Church bulletin</h3><p>Weekly bulletin copy including announcements, prayer requests, and community highlights.</p></div>
+    <div class="wc fade-up"><span class="wc-icon">🙏</span><h3>Prayer & devotional</h3><p>Opening and closing prayers, devotional readings, and small group discussion questions.</p></div>
+    <div class="wc fade-up" data-d="1"><span class="wc-icon">📢</span><h3>Announcement copy</h3><p>Event announcements, giving campaigns, and ministry launch copy for email and social.</p></div>
+    <div class="wc fade-up" data-d="2"><span class="wc-icon">📅</span><h3>Series planning</h3><p>Multi-week sermon series outlines with titles, themes, and scripture arc for each week.</p></div>
+  </div>
+</section>
+
+<div class="bg-lav">
+<section class="section" id="pricing">
+  <span class="sec-tag">✦ Pricing</span>
+  <h2>Less than one<br><em>study Bible.</em></h2>
+  <p class="sub">Most pastors spend 15–20 hours per week on sermon prep. Sermonly gives back 3–4 of those hours every single week.</p>
+  <div class="price-row">
+    <div class="pc fade-up"><div class="pc-tier">Pastor</div><div class="pc-amt"><sup>$</sup>15</div><div class="pc-per">per month</div><div class="pc-div"></div><ul class="pc-feats"><li>10 generations/month</li><li>Sermon outlines</li><li>Pastoral letters</li><li>Prayer copy</li></ul><button class="btn-outline-p" onclick="showPage('gen')">Get started</button></div>
+    <div class="pc feat fade-up" data-d="1"><div class="pc-badge">Most popular</div><div class="pc-tier">Ministry</div><div class="pc-amt"><sup>$</sup>25</div><div class="pc-per">per month</div><div class="pc-div"></div><ul class="pc-feats"><li>Unlimited generations</li><li>All content types</li><li>Series planning</li><li>Bulletin & announcements</li><li>Priority support</li></ul><button class="btn-gold2" onclick="showPage('gen')">Get started</button></div>
+    <div class="pc fade-up" data-d="2"><div class="pc-tier">Multi-site church</div><div class="pc-amt"><sup>$</sup>45</div><div class="pc-per">per month</div><div class="pc-div"></div><ul class="pc-feats"><li>Everything in Ministry</li><li>5 staff seats</li><li>Denomination-aware style</li><li>API access</li></ul><button class="btn-outline-p" onclick="showPage('gen')">Get started</button></div>
+  </div>
+</section>
+</div>
+
+<footer style="background:var(--plum);padding:40px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+  <a href="#" class="logo" onclick="showPage('home');return false" style="color:#fff"><em>Serm</em><span style="color:var(--gold-light)">only</span></a>
+  <div style="display:flex;gap:24px"><a href="#" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">Privacy</a><a href="#" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">Terms</a><a href="index.html" style="font-size:13px;color:rgba(255,255,255,.4);text-decoration:none">Cross Holding Group</a></div>
+  <small style="font-size:12px;color:rgba(255,255,255,.2)">© 2026 Sermonly · Cross Holding Group LLC</small>
+</footer>
+</div>
+
+<!-- GENERATOR -->
+<div id="page-gen" class="page">
+<div style="background:var(--cream);min-height:100vh;padding-top:90px">
+<div class="gen-wrap">
+  <button class="back-btn" onclick="showPage('home')">← Back</button>
+  <div class="gen-head"><h1>Generate my content</h1><p>Tell us about your message and your congregation. We'll handle the rest.</p></div>
+  <div class="gen-card" id="form-card">
+    <div class="form-grid">
+      <div class="sec-lbl">Content type</div>
+      <div class="form-group form-full"><label>What do you need? *</label>
+        <select class="fs" id="content-type">
+          <option value="">Select...</option>
+          <option>Sermon outline (3-point)</option><option>Sermon outline (topical)</option>
+          <option>Sermon outline (expository)</option><option>Multi-week series plan</option>
+          <option>Pastoral letter</option><option>Church bulletin copy</option>
+          <option>Opening/closing prayer</option><option>Small group discussion questions</option>
+          <option>Event announcement</option><option>Giving campaign copy</option>
+        </select>
+      </div>
+      <div class="sec-lbl">Message details</div>
+      <div class="form-group form-full"><label>Scripture passage(s) *</label>
+        <input class="fi" id="scripture" type="text" placeholder="e.g. Psalm 46:1-3, Matthew 7:24-27">
+      </div>
+      <div class="form-group form-full"><label>Sermon title or theme *</label>
+        <input class="fi" id="theme" type="text" placeholder="e.g. Finding peace in uncertainty / The unshakeable life">
+      </div>
+      <div class="form-group"><label>Sermon series name</label>
+        <input class="fi" id="series" type="text" placeholder="e.g. The Unshakeable Life (Week 2 of 4)">
+      </div>
+      <div class="form-group"><label>Service type</label>
+        <select class="fs" id="service-type">
+          <option>Sunday morning worship</option><option>Wednesday evening</option>
+          <option>Youth service</option><option>Small group / Bible study</option>
+          <option>Funeral / memorial</option><option>Wedding</option>
+          <option>Christmas / Easter special</option>
+        </select>
+      </div>
+      <div class="sec-lbl">Congregation context</div>
+      <div class="form-group"><label>Church denomination / tradition</label>
+        <select class="fs" id="denomination">
+          <option>Non-denominational evangelical</option><option>Baptist</option>
+          <option>Methodist</option><option>Presbyterian</option><option>Catholic</option>
+          <option>Pentecostal / charismatic</option><option>Lutheran</option>
+          <option>Anglican / Episcopal</option><option>Other</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Congregation size & feel</label>
+        <select class="fs" id="congregation">
+          <option>Small / intimate (under 100)</option><option>Mid-size (100–500)</option>
+          <option>Large church (500+)</option><option>Multi-site / megachurch</option>
+        </select>
+      </div>
+      <div class="form-group form-full"><label>Key points or themes to cover</label>
+        <textarea class="ft" id="key-points" placeholder="e.g. The difference between circumstantial peace and deep peace. God as refuge before the storm hits. The call to stillness as active trust, not passivity..."></textarea>
+      </div>
+      <div class="form-group form-full"><label>Closing application / call to action</label>
+        <input class="fi" id="application" type="text" placeholder="e.g. Invite congregation to identify one area where they need to trust God this week">
+      </div>
+    </div>
+    <button class="gen-btn" id="gen-btn" onclick="generateContent()">✝ Generate my content</button>
+  </div>
+  <div class="loading-wrap" id="loading-wrap"><div class="spinner"></div><div class="load-title">Preparing your message...</div><div class="load-sub">Writing with care and theological depth</div></div>
+  <div class="results-wrap" id="results-wrap">
+    <div class="res-hdr"><h3>Your content is ready.</h3><div class="res-acts"><button class="btn-ca" id="copy-all-btn" onclick="copyAll()">Copy all</button><button class="btn-ed" onclick="resetForm()">← Edit</button></div></div>
+    <div class="out-secs" id="out-secs"></div>
+  </div>
+</div>
+</div>
+</div>
+
+<script>
+function showPage(id){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+id).classList.add('active');window.scrollTo(0,0);if(id==='home')setTimeout(initFade,50)}
+function initFade(){const o=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible')}),{threshold:.08});document.querySelectorAll('.fade-up').forEach(el=>o.observe(el))}
+initFade();
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function decode(s){return s.replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&')}
+async function generateContent(){
+  const ct=document.getElementById('content-type').value;
+  const scripture=document.getElementById('scripture').value.trim();
+  const theme=document.getElementById('theme').value.trim();
+  if(!ct){alert('Please select content type.');return}
+  if(!scripture){alert('Please enter a scripture passage.');return}
+  if(!theme){alert('Please enter a theme or title.');return}
+  document.getElementById('form-card').style.display='none';
+  document.getElementById('loading-wrap').classList.add('show');
+  const prompt=`You are an experienced pastor and theological writer. Generate ${ct} content for a church service. Return ONLY a valid JSON object with these exact keys (no markdown, no extra text):
+{"title":"Complete title for the content","main_content":"Full main content with all sections, points, and subpoints clearly formatted","scripture_notes":"Key scripture context and cross-references to enrich the message","discussion_questions":"3-5 reflection or discussion questions for the congregation or small group","closing_prayer":"A brief closing prayer that ties the message together"}
+Details:
+- Content type: ${ct}
+- Scripture: ${scripture}
+- Title/Theme: ${theme}
+- Series: ${document.getElementById('series').value||'Standalone message'}
+- Service: ${document.getElementById('service-type').value}
+- Denomination: ${document.getElementById('denomination').value}
+- Congregation: ${document.getElementById('congregation').value}
+- Key points: ${document.getElementById('key-points').value||'Draw from scripture'}
+- Application: ${document.getElementById('application').value||'Personal reflection and commitment'}
+Write with pastoral warmth, theological depth, and practical application. Respect the tradition specified.`;
+  try{
+    const raw=await window.CHGenerate({prompt,maxTokens:1500,onError:(msg)=>{throw new Error(msg)}});if(!raw)return;
+    let parsed;try{parsed=JSON.parse(raw.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim())}catch{throw new Error('Parse error. Try again.')}
+    document.getElementById('loading-wrap').classList.remove('show');
+    renderResults(parsed);
+  }catch(err){document.getElementById('loading-wrap').classList.remove('show');document.getElementById('form-card').style.display='block';alert('Error: '+err.message)}
+}
+function renderResults(data){
+  const secs=[{icon:'✝',title:'Title',key:'title',highlight:true},{icon:'📖',title:'Main content',key:'main_content'},{icon:'📜',title:'Scripture notes',key:'scripture_notes'},{icon:'🙏',title:'Discussion questions',key:'discussion_questions'},{icon:'✨',title:'Closing prayer',key:'closing_prayer'}];
+  const container=document.getElementById('out-secs');container.innerHTML='';let allText='';
+  secs.forEach(sec=>{if(!data[sec.key])return;const val=data[sec.key];allText+=sec.title.toUpperCase()+'\n'+val+'\n\n---\n\n';const div=document.createElement('div');div.className='out-sec';
+    if(sec.highlight){div.innerHTML=`<div class="out-sec-h"><div class="out-sec-t"><span>${sec.icon}</span>${sec.title}</div><button class="out-sec-cp" onclick="cpSec(this,'${esc(val)}')">Copy</button></div><div class="out-hl">${esc(val)}</div>`}
+    else{div.innerHTML=`<div class="out-sec-h"><div class="out-sec-t"><span>${sec.icon}</span>${sec.title}</div><button class="out-sec-cp" onclick="cpSec(this,'${esc(val)}')">Copy</button></div><div class="out-sec-body">${esc(val)}</div>`}
+    container.appendChild(div);});
+  window._allText=allText;document.getElementById('results-wrap').classList.add('show');document.getElementById('results-wrap').scrollIntoView({behavior:'smooth'});
+}
+function cpSec(btn,text){navigator.clipboard.writeText(decode(text)).then(()=>{btn.textContent='Copied ✓';btn.classList.add('copied');setTimeout(()=>{btn.textContent='Copy';btn.classList.remove('copied')},2000)})}
+function copyAll(){if(!window._allText)return;navigator.clipboard.writeText(window._allText).then(()=>{const b=document.getElementById('copy-all-btn');b.textContent='Copied ✓';b.classList.add('copied');setTimeout(()=>{b.textContent='Copy all';b.classList.remove('copied')},2500)})}
+function resetForm(){document.getElementById('form-card').style.display='block';document.getElementById('results-wrap').classList.remove('show');document.getElementById('form-card').scrollIntoView({behavior:'smooth'})}
+</script>
+</body>
+</html>
